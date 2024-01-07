@@ -1,0 +1,196 @@
+report@config:load 56.10
+Authorized using stored user info.
+report@account:authorize 10.65
+stderr: 'rm' is not recognized as an internal or external command,
+operable program or batch file.
+
+Exporting assets from Unity............
+
+[ Stage1 ] Assets exported from Unity and staged for further processing
+report@unity:export 9088.66
+report@config:load 26.45
+Using D:/Noilaptrinhunity/optimization PixelArt/Assets/TextMesh Pro/Fonts/LiberationSans.ttf file to generate an atlas for LiberationSans[25598] font
+  Using alphabet  §1234567890-=qwertyuiop[]asdfghjkl;'\`zxcvbnm,./±!@#$%^&*()_+QWERTYUIOP{}ASDFGHJKL:"|~ZXCVBNM<>?
+Combined 97 glyphs into bitmap texture at D:/Noilaptrinhunity/optimization PixelArt/LunaTemp/stage1/tmp/fonts/LiberationSans-25598/output_0.png (56kb)
+Found custom rules for texture Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+  {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"none","quality":65,"script":"","ext":"","name":"Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset","isOverride":true}
+Found custom rules for texture Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+  {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"none","quality":65,"script":"","ext":"","name":"Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset","isOverride":true}
+Resources:
+{}
+report@assets:stage2 8910.89
+report@assets:stage3 492.18
+[ Stage2 ] Assets postprocessed and bundled successfully
+report@config:unity 0.34
+report@config:load 62.23
+report@config:unity 2.19
+report@code:compose 145.32
+Authorized using stored user info.
+report@account:authorize 5.68
+MSBuild version 17.6.3+07e294721 for .NET Framework
+
+Build started 8/3/2023 4:09:55 PM.
+
+
+
+Project "D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj" on node 1 (Rebuild target(s)).
+
+CoreClean:
+  Deleting file "D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\obj\Debug\Scripts.csproj.AssemblyReference.cache".
+
+  Deleting file "D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\obj\Debug\Scripts.csproj.CoreCompileInputs.cache".
+
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+
+CoreCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\Roslyn\csc.exe /noconfig /nowarn:CS0626,1701,1702 /fullpaths /nostdlib+ /errorreport:prompt /warn:4 /define:UNITY_LUNA;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_2021;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2021_3;UNITY_2021_3_7 /highentropyva+ /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Core.17.9.33-luna\lib\net40\Bridge.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Html5.17.9.0\lib\net40\Bridge.Html5.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\com.unity.cinemachine\2.4.0\Cinemachine.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\DOTween.1.2.705\lib\net40\DOTween.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\Retyped.Core.1.6.6733\lib\net40\Retyped.Core.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\Retyped.dom.2.8.6733\lib\net40\Retyped.dom.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\Retyped.es5.2.8.6733\lib\net40\Retyped.es5.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\Retyped.scripthost.2.8.6733\lib\net40\Retyped.scripthost.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\com.unity.textmeshpro\3.0.6\TextMeshPro.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Vendor\UnityEngine.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\com.unity.ui\1.2.1\UnityEngine.UI.dll /reference:D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\packages\com.unity.urp\7.6\UnityEngine.UniversalRenderPipeline.dll /debug+ /debug:full /optimize- /out:obj\Debug\UnityScriptsCompiler.dll /subsystemversion:6.00 /target:library /utf8output /langversion:7.2 "D:\Noilaptrinhunity\optimization PixelArt\Assets\MyTools\Analysis\Firebase\StatsRecord.cs" "D:\Noilaptrinhunity\optimization PixelArt\Assets\Scr
+ipts\ActionDraw.cs" "D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\BaseButton.cs" "D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\CammeraMove.cs" "D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ChosseStatusBtn.cs" "D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\DatMono.cs" "D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs" "D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs" "D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GetColorButton.cs" "D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\PageColorSwipe.cs" "D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\TextureChange.cs" Properties/AssemblyInfo.cs Sources/OtherDummyScript.cs "obj\Debug\.NETFramework,Version=v4.7.AssemblyAttributes.cs"
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\MyTools\Analysis\Firebase\StatsRecord.cs(6,7): error CS0246: The type or namespace name 'Unity' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(5,7): error CS0246: The type or namespace name 'Unity' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(6,7): error CS0246: The type or namespace name 'Unity' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\MyTools\Analysis\Firebase\StatsRecord.cs(68,43): error CS0246: The type or namespace name 'ProfilerRecorder' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(125,56): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(125,81): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(125,102): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(125,125): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(19,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(20,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\MyTools\Analysis\Firebase\StatsRecord.cs(13,5): error CS0246: The type or namespace name 'ProfilerRecorder' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(21,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(22,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(23,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(9,51): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(9,76): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(9,97): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(9,120): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(31,52): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(43,36): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(43,87): error CS0246: The type or namespace name 'Tile' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(184,22): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(184,73): error CS0246: The type or namespace name 'Tile' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(51,36): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(56,52): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(56,77): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(56,98): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(56,121): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(88,53): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(88,78): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(88,99): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(88,122): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(34,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(35,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(36,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(37,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(38,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(41,29): error CS0246: The type or namespace name 'Tile' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(42,29): error CS0246: The type or namespace name 'Tile' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(43,17): error CS0246: The type or namespace name 'Tile' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+  CompilerServer: server - server processed compilation - 81068a6b-0d9c-4a5a-abcc-bbb36257d452
+
+Done Building Project "D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj" (Rebuild target(s)) -- FAILED.
+
+
+
+[ error ] $Build FAILED.
+[ error ] $
+[ error ] $
+[ error ] $
+[ error ] $"D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj" (Rebuild target) (1) ->
+[ error ] $(CoreCompile target) -> 
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\MyTools\Analysis\Firebase\StatsRecord.cs(6,7): error CS0246: The type or namespace name 'Unity' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(5,7): error CS0246: The type or namespace name 'Unity' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(6,7): error CS0246: The type or namespace name 'Unity' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\MyTools\Analysis\Firebase\StatsRecord.cs(68,43): error CS0246: The type or namespace name 'ProfilerRecorder' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(125,56): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(125,81): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(125,102): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(125,125): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(19,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(20,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\MyTools\Analysis\Firebase\StatsRecord.cs(13,5): error CS0246: The type or namespace name 'ProfilerRecorder' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(21,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(22,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\FillPixel.cs(23,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(9,51): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(9,76): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(9,97): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(9,120): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(31,52): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(43,36): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(43,87): error CS0246: The type or namespace name 'Tile' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(184,22): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(184,73): error CS0246: The type or namespace name 'Tile' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(51,36): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(56,52): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(56,77): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(56,98): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(56,121): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(88,53): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(88,78): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(88,99): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\ActionDraw.cs(88,122): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(34,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(35,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(36,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(37,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(38,12): error CS0246: The type or namespace name 'Tilemap' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(41,29): error CS0246: The type or namespace name 'Tile' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(42,29): error CS0246: The type or namespace name 'Tile' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $  D:\Noilaptrinhunity\optimization PixelArt\Assets\Scripts\GameManager.cs(43,17): error CS0246: The type or namespace name 'Tile' could not be found (are you missing a using directive or an assembly reference?) [D:\noichuaLunaDownload\5.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+[ error ] $
+[ error ] $    0 Warning(s)
+[ error ] $    40 Error(s)
+[ error ] $
+[ error ] $
+[ error ] $Time Elapsed 00:00:02.16
+[ error ] $
+Diagnostics gathered successfully
+report@code:build 7329.05
+report@diagnostics:verify 1.66
+
+Fatal error while building C# code
+[ error ] $Project failed to build, check project diagnostics
+Error: DIAGNOSTICS_FATAL_ERROR
+    at Function.checkForErrors (D:\noichuaLunaDownload\5.2.0\pipeline\Jakefile.js:6:2978754)
+    at async _0x38a61e.action (D:\noichuaLunaDownload\5.2.0\pipeline\Jakefile.js:6:2983108)
