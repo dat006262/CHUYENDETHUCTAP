@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        NewGame(sprite);
+        NewGame(GameConfig.Instance.spriteInGame);
 
         /*        idNow = allGetColorButton[0].id;
                 colorNow = allGetColorButton[0].color;*/
@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
     }
     public void NewGame(Sprite input)
     {
+        Debug.Log("NEWGAME WITH" + input.name);
         textureTrue = ChangeTexture(input, TestSize);//tao anh 50*50dung format
         CreatePixelMap(textureTrue);
         CreateGetColotButton();

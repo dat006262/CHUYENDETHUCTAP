@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public abstract class BaseButton : DatMono
 {
-    [Header("Base Button")]
+
     [SerializeField] protected Button button;
     public override void Start()
     {
@@ -19,6 +19,10 @@ public abstract class BaseButton : DatMono
 
     protected virtual void AddOnClickEvent()
     {
+        if (button == null)
+        {
+            button = this.GetComponent<Button>();
+        }
         this.button.onClick.AddListener(this.OnClick);
     }
     protected abstract void OnClick();
