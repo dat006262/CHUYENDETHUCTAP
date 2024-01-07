@@ -215,6 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   sprite: {fileID: 21300000, guid: 0ed3e5845b493f54fa02660ae100f323, type: 3}
+  Image: {fileID: 5396673865882751646}
 --- !u!114 &5396673866123922799
 MonoBehaviour:
   m_ObjectHideFlags: 0
