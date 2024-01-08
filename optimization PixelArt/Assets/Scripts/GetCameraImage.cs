@@ -87,16 +87,7 @@ public class GetCameraImage : MonoBehaviour
                 permissionsAsked[2] = true;
                 return;
             }
-        }),
-        //    new Action(() => {
-        //    permissions[3] = Permission.HasUserAuthorizedPermission("android.permission.READ_PHONE_STATE");
-        //    if (!permissions[3] && !permissionsAsked[3])
-        //    {
-        //        Permission.RequestUserPermission("android.permission.READ_PHONE_STATE");
-        //        permissionsAsked[3] = true;
-        //        return;
-        //    }
-        //})
+        })
     };
         for (int i = 0; i < permissionsAsked.Count;)
         {
@@ -112,14 +103,18 @@ public class GetCameraImage : MonoBehaviour
 #endif
 
     }
+
     public void Reqquest()
     {
+#if UNITY_ANDROID
         if (Application.platform != RuntimePlatform.Android) return;
         StartCoroutine(AskForPermissions());
+#endif
     }
     public void OpenCameraDevice()
     {
-
+        isCamOn = true;
+        devices = WebCamTexture.devices;
     }
     public void TurnOnCam(int input)
     {
