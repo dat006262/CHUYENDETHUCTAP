@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Const
 {
+    public static string KEY_DATAINPROGRESS = "DataInProgress";
+
     #region DAILY GIFT && WEEKLY GIFTS
     public static string KEY_DAY_NUMBER = "day_number";
     public static string KEY_TOTAL_DAY = "total_day";

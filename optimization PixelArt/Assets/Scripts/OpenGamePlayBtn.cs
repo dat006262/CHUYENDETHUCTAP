@@ -20,6 +20,14 @@ public class OpenGamePlayBtn : BaseButton
     {
         SceneManager.LoadScene("GamePlay");
         GameConfig.Instance.spriteInGame = sprite;
+        //if (DataManager.dataInProgress.CheckImageDrawed(sprite.name))
+        //{
+        //    Debug.Log("Drawed");
+        //}
+        //else
+        //{
+        //    Debug.Log("NotDrawed");
+        //}
     }
 
 }

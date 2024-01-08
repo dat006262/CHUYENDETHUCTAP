@@ -84,6 +84,25 @@ public class FillPixel : MonoBehaviour
         onPoiterDown += GetColorPixel;
         onPoiterHorver += GetColorPixel;
     }
+    public void LoadFilled()
+    {
+        Sprite input = GameConfig.Instance.spriteInGame;
+        bool[,] matrix2 = DataManager.Instance.dataInProgress.GetMatrix(input.name);
+        for (int x = 0; x < matrix2.GetLength(0); x++)
+        {
+            for (int y = 0; y < matrix2.GetLength(1); y++)
+            {
+                if (matrix2[x, y])
+                {
+
+                    ActionDraw.FillTrue(new Vector2Int(x, y), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteColorNumber);
+
+
+                }
+            }
+        }
+
+    }
     private void GetColorPixel(Vector2Int coord)
     {
         if (status == StatusGame.STATUS.NORMAL)

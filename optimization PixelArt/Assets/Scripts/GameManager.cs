@@ -90,13 +90,20 @@ public class GameManager : MonoBehaviour
     public void NewGame(Sprite input)
     {
         Debug.Log("NEWGAME WITH" + input.name);
+
         textureTrue = ChangeTexture(input, TestSize);//tao anh 50*50dung format
+        if (!DataManager.Instance.dataInProgress.matrix.ContainsKey(input.name))
+        {
+            DataManager.Instance.dataInProgress.AddMatrix(input.name, new bool[textureTrue.width, textureTrue.height]);
+        }
         CreatePixelMap(textureTrue);
         CreateGetColotButton();
         getColorButtonNow = allGetColorButton[0];
         getColorButtonNow.UpdateGamePlay();
         getColorButtonNow.TurnOnHighLight();
+        FillPixel.Instance.LoadFilled();
     }
+
     Texture2D ChangeTexture(Sprite sprite, int size)
     {
         return TextureChange.Bilinear(sprite.texture, size, size);//thay doi kich thuoc anh

@@ -22,6 +22,8 @@ public class ActionDraw
         DeletePixel(tileMapRenColor, input);
 
         GameManager.Instance.allPixels[input].filledTrue = true;
+
+        DataManager.Instance.dataInProgress.SetMatrix(GameConfig.Instance.spriteInGame.name, input.x, input.y);
         GameManager.Instance.allGetColorButton[id - 1].slide.fillAmount = CheckProgressId(id);
         if (CheckCompleteId(id)) { GameManager.Instance.allGetColorButton[id - 1].tickCompelete.enabled = true; }
         if (CheckCompleteAllColor()) { GameManager.Instance.LoadScene(); }
