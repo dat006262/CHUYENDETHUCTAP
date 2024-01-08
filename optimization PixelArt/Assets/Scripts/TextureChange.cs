@@ -37,6 +37,7 @@ public class TextureChange : MonoBehaviour
             {
                 Color color = new Color();
                 color = _texture.GetPixel(x, y);
+                if (color.a < 0.5f) { color = Color.white; }
                 color = Color.Lerp(new Color(color.grayscale, color.grayscale, color.grayscale), Color.white, 0f);
                 blackwhitteTexture.SetPixel(x, y, color);
                 blackwhitteTexture.Apply();
