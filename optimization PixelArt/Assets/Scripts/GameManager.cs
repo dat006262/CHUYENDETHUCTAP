@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         getColorButtonNow = allGetColorButton[0];
         getColorButtonNow.UpdateGamePlay();
         getColorButtonNow.TurnOnHighLight();
-        FillPixel.Instance.LoadFilled();
+        FillPixel.Instance.LoadInProgress();
     }
 
     Texture2D ChangeTexture(Sprite sprite, int size)

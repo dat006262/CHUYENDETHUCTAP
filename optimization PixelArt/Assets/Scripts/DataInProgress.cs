@@ -64,29 +64,29 @@ public class DataInProgress
         }
         Save();
     }
-    private void AutoSetImageStat(string key)
-    {
-        if (!imageStatData.ContainsKey(key))
-        {
-            imageStatData.Add(key, ImageStat.NEVER_DRAWED);
-        }
-        if (CheckImageDrawed(key))
-        {
-            foreach (var x in matrix[key])
-            {
-                if (!x)
-                {
-                    imageStatData[key] = ImageStat.INPROGRESS;
-                }
-            }
-            imageStatData[key] = ImageStat.COMPLETE;
-        }
-        else
-        {
-            imageStatData[key] = ImageStat.NEVER_DRAWED;
-        }
+    //private void AutoSetImageStat(string key)
+    //{
+    //    if (!imageStatData.ContainsKey(key))
+    //    {
+    //        imageStatData.Add(key, ImageStat.NEVER_DRAWED);
+    //    }
+    //    if (CheckImageDrawed(key))
+    //    {
+    //        foreach (var x in matrix[key])
+    //        {
+    //            if (!x)
+    //            {
+    //                imageStatData[key] = ImageStat.INPROGRESS;
+    //            }
+    //        }
+    //        imageStatData[key] = ImageStat.COMPLETE;
+    //    }
+    //    else
+    //    {
+    //        imageStatData[key] = ImageStat.NEVER_DRAWED;
+    //    }
 
-    }
+    //}
     public bool CheckImageDrawed(string key)
     {
         foreach (var x in matrix[key])
