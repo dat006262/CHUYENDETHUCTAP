@@ -54,15 +54,45 @@ public class DataInProgress
 
         Save();
     }
-
     public void SetMatrix(string key, int i, int j)
     {
+        if (imageStatData[key].Equals(ImageStat.NEVER_DRAWED))
+        {
+            imageStatData[key] = ImageStat.INPROGRESS;
+        }
         if (matrix[key][i, j] == false)
         {
             matrix[key][i, j] = true;
 
         }
         Save();
+    }
+
+    public ImageStat AddImageStat(string key)
+    {
+
+        if (!this.imageStatData.ContainsKey(key))
+        {
+            this.imageStatData.Add(key, ImageStat.NEVER_DRAWED);
+            Debug.Log("add keymImageStat:" + key);
+
+            Save();
+            return ImageStat.NEVER_DRAWED;
+        }
+        else
+        {
+            return this.imageStatData[key];
+        }
+
+
+    }
+    public void SetImageStatComplete(string key)
+    {
+        if (this.imageStatData.ContainsKey(key))
+        {
+            this.imageStatData[key] = ImageStat.COMPLETE;
+            Save();
+        }
     }
     //private void AutoSetImageStat(string key)
     //{

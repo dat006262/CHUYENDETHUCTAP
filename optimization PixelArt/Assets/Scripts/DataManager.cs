@@ -9,9 +9,7 @@ public class DataManager : SingletonMonoBehaviour<DataManager>
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
-    }
-    public void Start()
-    {
         dataInProgress.Load();
     }
+
 }

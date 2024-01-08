@@ -1,6 +1,7 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class ActionDraw
@@ -26,7 +27,13 @@ public class ActionDraw
         DataManager.Instance.dataInProgress.SetMatrix(GameConfig.Instance.spriteInGame.name, input.x, input.y);
         GameManager.Instance.allGetColorButton[id - 1].slide.fillAmount = CheckProgressId(id);
         if (CheckCompleteId(id)) { GameManager.Instance.allGetColorButton[id - 1].tickCompelete.enabled = true; }
-        if (CheckCompleteAllColor()) { GameManager.Instance.LoadScene(); }
+        if (CheckCompleteAllColor())
+        {
+            DataManager.Instance.dataInProgress.SetImageStatComplete(GameConfig.Instance.spriteInGame.name);
+            Debug.Log("WIM");
+            SceneManager.LoadScene("HomeUI");
+
+        }
 
         //  Debug.Log("FillTrue");
     }

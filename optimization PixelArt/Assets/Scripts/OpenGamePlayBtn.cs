@@ -10,24 +10,19 @@ public class OpenGamePlayBtn : BaseButton
     public Sprite sprite;
     [Header("Referent")]
     public Image Image;
-
+    public ImageStat imageStat;
     public override void Start()
     {
         base.Start();
         Image.sprite = sprite;
+        imageStat = DataManager.Instance.dataInProgress.AddImageStat(sprite.name);
     }
     protected override void OnClick()
     {
         SceneManager.LoadScene("GamePlay");
         GameConfig.Instance.spriteInGame = sprite;
-        //if (DataManager.dataInProgress.CheckImageDrawed(sprite.name))
-        //{
-        //    Debug.Log("Drawed");
-        //}
-        //else
-        //{
-        //    Debug.Log("NotDrawed");
-        //}
+
+
     }
 
 }
