@@ -11,8 +11,12 @@ public enum ImageStat
     INPROGRESS,
     COMPLETE
 }
+[System.Serializable]
 public class DataInProgress
 {
+    public Dictionary<string, ImageStat> imageStatData = new Dictionary<string, ImageStat>();
+    public Dictionary<string, bool[,]> matrix = new Dictionary<string, bool[,]>();
+    public int WebCamPictureCount = 0;
     public void Load()
     {
         if (!PlayerPrefs.HasKey(Const.KEY_DATAINPROGRESS))//neu chua tung tao PlayerPrefs cho jso
@@ -129,8 +133,6 @@ public class DataInProgress
         }
         return false;
     }
-    public Dictionary<string, ImageStat> imageStatData = new Dictionary<string, ImageStat>();
-    public Dictionary<string, bool[,]> matrix = new Dictionary<string, bool[,]>();
-    public int WebCamPictureCount = 0;
+
 }
 

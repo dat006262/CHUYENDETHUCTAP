@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 //using System.Drawing;
 using System.IO;
+using UnityEditor;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.UI;
+using UnityEngine.Windows.WebCam;
 
 public class GetCameraImage : MonoBehaviour
 {
@@ -205,6 +208,23 @@ public class GetCameraImage : MonoBehaviour
         Sprite sprite = Sprite.Create(imageTexture, new Rect(0, 0, imageTexture.width, imageTexture.height), new Vector2(0.5f, 0.5f));
         sprite.name = imageFileName;
         return sprite;
+    }
+    public void TEST()
+    {
+        DataManager.Instance.dataInProgress.WebCamPictureCount++;
+        string directoryPath = "Assets/Resources/TEST";
+        Sprite imageToSave = TakePicture();
+        if (!Directory.Exists(directoryPath)) // Kiểm tra nếu thư mục không tồn tại
+        {
+            Directory.CreateDirectory(directoryPath); // Tạo thư mục nếu chưa tồn tại
+        }
+
+        byte[] bytes = imageToSave.texture.EncodeToPNG(); // Chuyển ảnh thành mảng byte (PNG format)
+
+        string filePath = Path.Combine(directoryPath, $"savedImage{DataManager.Instance.dataInProgress.WebCamPictureCount}.png"); // Tạo đường dẫn đầy đủ cho tệp ảnh
+
+        File.WriteAllBytes(filePath, bytes); // Lưu mảng byte vào tệp ảnh tại đường dẫn đã cho
+        AssetDatabase.SaveAssets();
     }
     public Sprite TakePicture()
     {
