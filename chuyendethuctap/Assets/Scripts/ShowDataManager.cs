@@ -21,7 +21,7 @@ public class ShowDataManager : MonoBehaviour
         foreach (var sprite in sprites)
         {
             OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentLibrary);
-            openGamePlayBtn.sprite = sprite;
+            openGamePlayBtn.spriteSource = sprite;
         }
     }
 

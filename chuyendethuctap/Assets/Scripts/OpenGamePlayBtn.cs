@@ -9,7 +9,7 @@ using UnityEngine.Windows;
 public class OpenGamePlayBtn : BaseButton
 {
     [Header("DataToOpenGame")]
-    public Sprite sprite;
+    public Sprite spriteSource;
     [Header("Referent")]
     public Image Image;
     public ImageStat imageStat;
@@ -28,19 +28,19 @@ public class OpenGamePlayBtn : BaseButton
         if (imageStat.Equals(ImageStat.COMPLETE)) { return; }
 
         SceneManager.LoadScene("GamePlay");
-        GameConfig.Instance.spriteInGame = sprite;
+        GameConfig.Instance.spriteInGame = spriteSource;
     }
     public void LoadImageRenderer()
     {
-        Texture2D textureTrue = TextureChange.Bilinear(sprite.texture, 50, 50); ;//tao anh 50*50dung format
+        Texture2D textureTrue = TextureChange.Bilinear(spriteSource.texture, 50, 50); ;//tao anh 50*50dung format
         textureTrue.filterMode = FilterMode.Point;
         Sprite create = Sprite.Create(textureTrue, new Rect(0, 0, textureTrue.width, textureTrue.height), Vector2.one * 0.5f);
-
-        imageStat = DataManager.Instance.dataInProgress.AddImageStat(sprite.name);
+        create.name = spriteSource.name;
+        imageStat = DataManager.Instance.dataInProgress.AddImageStat(spriteSource.name);
 
         if (imageStat.Equals(ImageStat.INPROGRESS))
         {
-            Sprite blackwhite = TextureChange.CreatBlackAndWhiteSprite(create);
+            Sprite blackwhite = TextureChange.CreatBlackAndWhiteSpriteDrawed(create);
             Image.sprite = blackwhite;
         }
         else if (imageStat.Equals(ImageStat.COMPLETE))
@@ -50,7 +50,8 @@ public class OpenGamePlayBtn : BaseButton
         }
         else
         {
-            Image.sprite = create;
+            Sprite blackwhite = TextureChange.CreatBlackAndWhiteSprite(create);
+            Image.sprite = blackwhite;
         }
     }
 }

@@ -19,6 +19,10 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         dataInProgress.Load();
         GetAllSprite();
+
+    }
+    private void Start()
+    {
         ShowDataManager.Instance.SpawmLibrary_New(sprites);
     }
     public void GetAllSprite()

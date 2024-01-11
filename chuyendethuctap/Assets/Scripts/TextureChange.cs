@@ -48,6 +48,40 @@ public class TextureChange : MonoBehaviour
 
         return create;
     }
+    public static Sprite CreatBlackAndWhiteSpriteDrawed(Sprite input)
+    {
+        Texture2D _texture = input.texture;
+        Texture2D blackwhitteTexture = new Texture2D(_texture.width, _texture.height, TextureFormat.RGBA32, false);
+        blackwhitteTexture.filterMode = FilterMode.Point;
+
+        for (int x = 0; x < _texture.width; x++)
+        {
+            for (int y = 0; y < _texture.height; y++)
+            {
+                Color color = new Color();
+                color = _texture.GetPixel(x, y);
+                if (color.a < 0.5f)
+                {
+                    color = Color.white;
+                }
+                if (DataManager.Instance.dataInProgress.matrix[input.name][x, y])
+                {
+                    color = input.texture.GetPixel(x, y);
+                }
+                else
+                {
+                    color = Color.Lerp(new Color(color.grayscale, color.grayscale, color.grayscale), Color.white, 0f);
+                }
+
+                blackwhitteTexture.SetPixel(x, y, color);
+                blackwhitteTexture.Apply();
+            }
+        }
+        Sprite create = Sprite.Create(blackwhitteTexture, new Rect(0, 0, blackwhitteTexture.width, blackwhitteTexture.height), Vector2.one * 0.5f);
+        create.name = input.name;
+
+        return create;
+    }
     /* public static void ChangeFormatTexture(Sprite input)
      {
          string path = AssetDatabase.GetAssetPath(input);
