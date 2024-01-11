@@ -103,7 +103,10 @@ public class GameManager : MonoBehaviour
         getColorButtonNow.TurnOnHighLight();
         FillPixel.Instance.LoadInProgress();
     }
-
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("HomeUI");
+    }
     Texture2D ChangeTexture(Sprite sprite, int size)
     {
         return TextureChange.Bilinear(sprite.texture, size, size);//thay doi kich thuoc anh

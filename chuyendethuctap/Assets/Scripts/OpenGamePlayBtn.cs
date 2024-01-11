@@ -9,7 +9,7 @@ using UnityEngine.Windows;
 public class OpenGamePlayBtn : BaseButton
 {
     [Header("DataToOpenGame")]
-    public Sprite spriteSource;
+    public Sprite spriteSource = null;
     [Header("Referent")]
     public Image Image;
     public ImageStat imageStat;
@@ -18,9 +18,6 @@ public class OpenGamePlayBtn : BaseButton
     {
         base.Start();
         LoadImageRenderer();
-
-
-
 
     }
     protected override void OnClick()
@@ -36,7 +33,7 @@ public class OpenGamePlayBtn : BaseButton
         textureTrue.filterMode = FilterMode.Point;
         Sprite create = Sprite.Create(textureTrue, new Rect(0, 0, textureTrue.width, textureTrue.height), Vector2.one * 0.5f);
         create.name = spriteSource.name;
-        imageStat = DataManager.Instance.dataInProgress.AddImageStat(spriteSource.name);
+
 
         if (imageStat.Equals(ImageStat.INPROGRESS))
         {
