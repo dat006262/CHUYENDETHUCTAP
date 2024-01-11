@@ -23,7 +23,7 @@ public class OpenGamePlayBtn : BaseButton
     protected override void OnClick()
     {
         if (imageStat.Equals(ImageStat.COMPLETE)) { return; }
-
+        SoundManager.Instance.PlaySfxRewind(Resources.Load<AudioClip>("Sounds/tap"));
         SceneManager.LoadScene("GamePlay");
         GameConfig.Instance.spriteInGame = spriteSource;
     }

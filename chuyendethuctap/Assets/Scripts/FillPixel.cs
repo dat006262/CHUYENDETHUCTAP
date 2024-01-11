@@ -50,6 +50,7 @@ public class FillPixel : MonoBehaviour
     }
     void InvokeWhenDown()
     {
+        // SoundManager.Instance.PlaySfxRewind(Resources.Load<AudioClip>("Sounds/tap"));
         Vector3 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = 0;
         Vector3Int moucell = tileMapLine.WorldToCell(mouseWorldPos);
