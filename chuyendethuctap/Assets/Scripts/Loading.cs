@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Loading : MonoBehaviour
@@ -56,6 +57,7 @@ public class Loading : MonoBehaviour
             loadingPercent.text = (percent >= 100) ? "100%" : $"{percent}%";
             yield return new WaitForSeconds(0.01f);
         }
+        SceneManager.LoadScene("HomeUI");
         //if (!PlayerPrefs.HasKey(Const.USER_FIRST_TIME_OPEN))
         //{
         //    PlayerData.Instance.FirstTimeOpen = DateTime.Now;
