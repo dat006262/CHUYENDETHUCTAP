@@ -11,7 +11,8 @@ public class ShowDataManager : MonoBehaviour
     public RectTransform contentComplete;
     public RectTransform contentCreate;
     public OpenGamePlayBtn OpenGamePlayBtnPrefabs;
-
+    public GameObject main;
+    public GameObject camTakePicture;
     private void Awake()
     {
         Instance = this;
@@ -44,5 +45,12 @@ public class ShowDataManager : MonoBehaviour
 
         }
     }
-
+    public void SetActiveMain(bool active)
+    {
+        main.gameObject.SetActive(active);
+    }
+    public void SetActiveCam(bool active)
+    {
+        camTakePicture.gameObject.SetActive(active);
+    }
 }
