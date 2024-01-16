@@ -7,17 +7,39 @@ using UnityEditor;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Android;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
 using UnityEngine.Windows.WebCam;
+#if UNITY_EDITOR
+[CustomEditor(typeof(GetCameraImage))]
+public class GetCameraImageEditor : Editor
+{
 
+    public override void OnInspectorGUI()
+    {
+        GetCameraImage tool = (GetCameraImage)target;
+        if (GUILayout.Button("TurnOffCam"))
+        {
+            tool.TurnOffCam();
+            AssetDatabase.SaveAssets();
+        }
+        if (GUILayout.Button("TurnOnCam"))
+        {
+            tool.TurnOnCam(0);
+            AssetDatabase.SaveAssets();
+        }
+        base.OnInspectorGUI();
+    }
+}
+#endif
 public class GetCameraImage : MonoBehaviour
 {
+    public static GetCameraImage intances;
     public List<Sprite> saveSprite;
     private float size = 40;
     // Tạo mới một bitmap với kích thước 100x100
     public Slider slider;
     WebCamTexture webcamTexture;
-    WebCamTexture webcamTexture2;
     public string path;
     public RawImage imgDisplay;
     private Material grayScaleMaterial = null;
@@ -29,6 +51,10 @@ public class GetCameraImage : MonoBehaviour
     public GameObject CamScreenFront;
     public RectTransform CamScreenBack;
     //Assets/Material2/GrayScale2.shader
+    private void Awake()
+    {
+        intances = this;
+    }
     private void Start()
     {
         slider.onValueChanged.AddListener(OnSliderValueChanged);
@@ -138,13 +164,13 @@ public class GetCameraImage : MonoBehaviour
             case 0:
                 {
                     CamScreenBack.rotation = Quaternion.Euler(0, 0, -90);
-                    this.GetComponent<RawImage>().uvRect = new Rect(0, 1, 1, 1);
+                    imgDisplay.uvRect = new Rect(0, 1, 1, 1);
                     break;
                 }
             case 1:
                 {
                     CamScreenBack.rotation = Quaternion.Euler(0, 0, 90);
-                    this.GetComponent<RawImage>().uvRect = new Rect(0, 1, 1, -1);
+                    imgDisplay.uvRect = new Rect(0, 1, 1, -1);
                     break;
                 }
         }
@@ -154,8 +180,8 @@ public class GetCameraImage : MonoBehaviour
         webcamTexture.Play();
         webcamTexture.filterMode = FilterMode.Trilinear;
 
-        this.GetComponent<RawImage>().material = grayScaleMaterial;
-        this.GetComponent<RawImage>().texture = webcamTexture;
+        imgDisplay.material = grayScaleMaterial;
+        imgDisplay.texture = webcamTexture;
 
     }
     public void TurnOffCam()
@@ -209,23 +235,7 @@ public class GetCameraImage : MonoBehaviour
         sprite.name = imageFileName;
         return sprite;
     }
-    public void TEST()
-    {
-        DataManager.Instance.dataInProgress.WebCamPictureCount++;
-        string directoryPath = "Assets/Resources/TEST";
-        Sprite imageToSave = TakePicture();
-        if (!Directory.Exists(directoryPath)) // Kiểm tra nếu thư mục không tồn tại
-        {
-            Directory.CreateDirectory(directoryPath); // Tạo thư mục nếu chưa tồn tại
-        }
 
-        byte[] bytes = imageToSave.texture.EncodeToPNG(); // Chuyển ảnh thành mảng byte (PNG format)
-
-        string filePath = Path.Combine(directoryPath, $"savedImage{DataManager.Instance.dataInProgress.WebCamPictureCount}.png"); // Tạo đường dẫn đầy đủ cho tệp ảnh
-
-        File.WriteAllBytes(filePath, bytes); // Lưu mảng byte vào tệp ảnh tại đường dẫn đã cho
-        AssetDatabase.SaveAssets();
-    }
     public Sprite TakePicture()
     {
         Texture2D texture = new Texture2D(webcamTexture.width, webcamTexture.height, TextureFormat.RGBA32, false);
@@ -255,5 +265,17 @@ public class GetCameraImage : MonoBehaviour
         Sprite create = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
 
         return create;
+    }
+    public void CreateAPictureToDraw()
+    {
+        Sprite sprite = TakePicture();
+        // blacksprite = PictureControll.Instance_picture.CreatBlackAndWhiteSprite(sprite);//tao anh den trang
+        // PictureControll.Instance_picture.CreateBtnLoad(sprite, blacksprite, gridCreate);
+        ShowDataManager.Instance.SpawnOneBtnCreated(sprite);
+        SaveImageToFile(sprite.texture, "Create" + $"{DataManager.Instance.dataInProgress.WebCamPictureCount}", "/CamPicture");//luu anh thuong vao folder
+        DataManager.Instance.dataInProgress.SetCamImageCount(DataManager.Instance.dataInProgress.WebCamPictureCount + 1);
+        ;
+
+
     }
 }

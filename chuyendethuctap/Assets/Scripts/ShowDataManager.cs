@@ -45,6 +45,24 @@ public class ShowDataManager : MonoBehaviour
 
         }
     }
+    public void SpawnCreated(List<Sprite> sprites)
+    {
+        foreach (var sprite in sprites)
+        {
+            OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentCreate);
+            openGamePlayBtn.spriteSource = sprite;
+            openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(sprite.name);
+
+
+        }
+    }
+    public void SpawnOneBtnCreated(Sprite sprite)
+    {
+        OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentCreate);
+        openGamePlayBtn.spriteSource = sprite;
+        openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(sprite.name);
+    }
+    //=======================UI==============================================================================================================
     public void SetActiveMain(bool active)
     {
         main.gameObject.SetActive(active);

@@ -10,13 +10,16 @@ public class OpenGamePlayBtn : BaseButton
 {
     [Header("DataToOpenGame")]
     public Sprite spriteSource = null;
+    public int size = 50;
     [Header("Referent")]
     public Image Image;
     public ImageStat imageStat;
     public GameObject ImageComplete;
+
     public override void Start()
     {
         base.Start();
+
         LoadImageRenderer();
 
     }
@@ -29,7 +32,7 @@ public class OpenGamePlayBtn : BaseButton
     }
     public void LoadImageRenderer()
     {
-        Texture2D textureTrue = TextureChange.Bilinear(spriteSource.texture, 50, 50); ;//tao anh 50*50dung format
+        Texture2D textureTrue = TextureChange.Bilinear(spriteSource.texture, size, size); ;//tao anh 50*50dung format
         textureTrue.filterMode = FilterMode.Point;
         Sprite create = Sprite.Create(textureTrue, new Rect(0, 0, textureTrue.width, textureTrue.height), Vector2.one * 0.5f);
         create.name = spriteSource.name;

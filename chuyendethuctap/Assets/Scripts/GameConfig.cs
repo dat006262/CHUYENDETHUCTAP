@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameConfig : MonoBehaviour
 {
     public Sprite spriteInGame;
+    public int spriteGameSize = 50;
     public static GameConfig Instance { get; private set; }
     private void Awake()
     {

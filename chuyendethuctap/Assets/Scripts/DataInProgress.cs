@@ -121,6 +121,11 @@ public class DataInProgress
     //    }
 
     //}
+    public void SetCamImageCount(int index)
+    {
+        WebCamPictureCount = index;
+        Save();
+    }
     public bool CheckImageDrawed(string key)
     {
         foreach (var x in matrix[key])
