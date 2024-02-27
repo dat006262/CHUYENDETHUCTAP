@@ -1,4 +1,4 @@
-
+﻿
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,10 +13,9 @@ public class ActionDraw
         if (GameManager.Instance.allPixels[input].filledTrue) { return; }
         CammeraMove.intances.canMoveCam = false;
         int id = GameManager.Instance.allPixels[input].id;
-        //GameManager.Instance.getColorButtonNow.slide.fillAmount = CheckProgressId(GameManager.Instance.getColorButtonNow.id);
-        //if (CheckCompleteId(GameManager.Instance.getColorButtonNow.id)) { GameManager.Instance.getColorButtonNow.tickCompelete.enabled = true; }
-        //Debug.Log("FillTrue");
+        //Đổi màu phần màu trắng thành màu đúng
         CreatePixel(tilemapWhiteRenColor, input, GameManager.Instance.allPixels[input].color, GameManager.Instance._lineBigTile);
+        //Loại bỏ phần viền, phần số, phần làm nổi bật và phần màu xám
         DeletePixel(tileMapLine, input);
         DeletePixel(tilemapNumber, input);
         DeletePixel(GameManager.Instance.tileMapHighLight, input);
@@ -39,12 +38,10 @@ public class ActionDraw
     }
     public static void FillWrong(Vector2Int input, Tilemap tileMapRenColor)
     {
-
         if (GameManager.Instance.allPixels[input].filledTrue) { return; }
         if (GameManager.Instance.allPixels[input].colorWrongNow == GameManager.Instance.colorNow) return;
 
-        // Debug.Log("FillWrong");
-        Color _color = Color.Lerp(GameManager.Instance.colorNow, GameManager.Instance.allPixels[input].color/*Color.white*/, 0.5f);
+        Color _color = Color.Lerp(GameManager.Instance.colorNow, GameManager.Instance.allPixels[input].color, 0.5f);
         CreatePixel(GameManager.Instance.tileMapWhiteRenColor, input, _color, GameManager.Instance._smallTile);
         //  DeletePixel(GameManager.Instance.tileMapWhiteRenColor, input);
         GameManager.Instance.allPixels[input].colorWrongNow = GameManager.Instance.colorNow;
@@ -71,13 +68,14 @@ public class ActionDraw
         {
             for (int n = input.y - 5; n <= input.y + 5; n++)
             {
-
+                //Kiểm tra viền 
                 if (m < 0 || m >= GameManager.Instance.textureTrue.width) continue;
                 if (n < 0 || n >= GameManager.Instance.textureTrue.height) continue;
                 if (!GameManager.Instance.allPixels.ContainsKey(new Vector2Int(m, n)))
                 {
                     continue;
                 }
+                //Đường kính bình phương <=26
                 if (Math.Pow(input.x - m, 2) + Math.Pow(input.y - n, 2) <= 26)
                 {
                     if (1 == 1)
@@ -108,8 +106,7 @@ public class ActionDraw
                     continue;
                 }
                 ///kiem tra xong
-
-
+                /////Thực hiện đệ quy để liên tục tô các ô bên cạnh
                 if (GameManager.Instance.allPixels[new Vector2Int(m, n)].id == id)
                 {
                     //id giong
@@ -124,10 +121,7 @@ public class ActionDraw
                         DrawAround(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor);
 
                     }
-
-
                 }
-
             }
         }
     }

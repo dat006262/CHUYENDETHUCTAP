@@ -58,26 +58,7 @@ public class Loading : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         SceneManager.LoadScene("HomeUI");
-        //if (!PlayerPrefs.HasKey(Const.USER_FIRST_TIME_OPEN))
-        //{
-        //    PlayerData.Instance.FirstTimeOpen = DateTime.Now;
-        //    PlayerData.Instance.GameLoginDay = 0;
-        //}
-        //else
-        //{
-        //    TimeSpan _timeFromFirstOpen = DateTime.Now.StartOfDay() - DateTime.Parse(PlayerData.Instance.FirstTimeOpen.StartOfDay().ToString());
-        //    int _dayFromFirstOpen = (int)_timeFromFirstOpen.Days;
-        //    if (_dayFromFirstOpen > PlayerData.Instance.GameLoginDay) PlayerData.Instance.GameLoginDay = _dayFromFirstOpen;
-        //}
-        //_DailyService.HandleDailyServiceTime();
-        //if (PlayerData.Instance.HighestLevel >= 5)
-        //{
-        //    AddressablesManager.Instance.LoadAddressableScene(Const.SCENE_HOME);
-        //}
-        //else
-        //{
-        //    AddressablesManager.Instance.LoadAddressableScene(Const.SCENE_GAME);
-        //}
+
         SoundManager.Instance.PlayGameMusic();
     }
 

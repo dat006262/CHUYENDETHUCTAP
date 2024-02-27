@@ -40,7 +40,6 @@ public class CammeraMove : MonoBehaviour
             Zoom(Input.GetAxis("Mouse ScrollWheel"));
         }
 
-        #region SwipeWithOldInput
 
         if (Input.touchCount == 2)
         {
@@ -64,6 +63,7 @@ public class CammeraMove : MonoBehaviour
         {
             StartTouch = cam.ScreenToWorldPoint(Input.mousePosition);
         }
+
         if (Input.GetMouseButton(0) && canMoveCam)
         {
             Debug.Log("MoveCam");
@@ -75,19 +75,12 @@ public class CammeraMove : MonoBehaviour
         {
             StartTouch = Vector3.zero;
         }
-        //}
-        #endregion
+
     }
     private void OnSliderValueChanged(float value)
     {
-        //PixelColor.
-
         virturalcam.m_Lens.OrthographicSize = Mathf.Lerp(GameManager.Instance.TestSize * scale, 10, value);
         camlookat.transform.position = ClampCamera(camlookat.transform.position);
-
-        //SquareColor.SetColor("_FaceColor", new Color(1, 1, 1, 1 - value));
-        //Text.SetColor("_FaceColor", new Color(1, 1, 1, (value)));
-        //WrongColor.SetColor("_FaceColor", new Color(1, 1, 1, Mathf.Clamp(1 - value, 0.5f, 1f)));
     }
     private Vector3 ClampCamera(Vector3 targerPosition)//truyen vao 1 vector3 va tra ve 1 vector3 hop ly voi Cammera
     {

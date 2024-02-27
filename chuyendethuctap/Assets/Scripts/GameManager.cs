@@ -1,4 +1,4 @@
-
+﻿
 using System.Collections.Generic;
 //using System.Drawing;
 using UnityEngine;
@@ -15,13 +15,15 @@ public class GameManager : MonoBehaviour
     //----------------------------------//
     public class Node
     {
-        public bool isDrawBomb;
-        public bool isCheckDrawStick;
-        public UnityEngine.Color colorWrongNow;
-        public bool filledTrue;
-        public Vector2Int position;
-        public UnityEngine.Color color;
-        public int id;
+        public bool isDrawBomb;// Tô theo mảng
+        public bool isCheckDrawStick;// Đũa phép
+        public UnityEngine.Color colorWrongNow; //Màu hiện tại
+        public bool filledTrue;//Trạng thái 
+        public Vector2Int position;//Vị trí
+        public UnityEngine.Color color;//Màu cần tô
+        public int id;//số thứ tự của màu cần tô
+
+        //màu xám tương ứng
         public Color graycolor => Color.Lerp(new Color(1 * color.grayscale, 1 * color.grayscale, 1 * color.grayscale, 1), Color.white, 0.0f);
     }
     public static GameManager Instance { get; private set; }
@@ -96,11 +98,15 @@ public class GameManager : MonoBehaviour
         {
             DataManager.Instance.dataInProgress.AddMatrix(input.name, new bool[textureTrue.width, textureTrue.height]);
         }
+        //Tao map ô tô màu 
         CreatePixelMap(textureTrue);
+        //Tạo ô chứa màu
         CreateGetColotButton();
+        //Highlight màu số1
         getColorButtonNow = allGetColorButton[0];
         getColorButtonNow.UpdateGamePlay();
         getColorButtonNow.TurnOnHighLight();
+        //Tô các màu đã tô từ lần chơi trước
         FillPixel.Instance.LoadInProgress();
     }
     public void BackToMenu()
@@ -126,11 +132,12 @@ public class GameManager : MonoBehaviour
 
         #region GetColor[] colors
 
-        Color[] colors = texture.GetPixels();
+        Color[] colors = texture.GetPixels();//Đọc mảng màu
         for (int i = 0; i < colors.Length; i++)
         {
-            if (colors[i].a >= 0.5f)
+            if (colors[i].a >= 0.5f)//Chỉ khi màu có độ đục > 50%
             {
+                //làm tròn các giá trị r,g,b theo bước nhảy là 0.25
                 colors[i] = new Color(ColorHelp.RoundColor(colors[i].r, 0.25f), ColorHelp.RoundColor(colors[i].g, 0.25f), ColorHelp.RoundColor(colors[i].b, 0.25f));
             }
         }
@@ -156,24 +163,27 @@ public class GameManager : MonoBehaviour
                         color = colors[x + y * texture.width],
                         id = 0
                     };
+                    //Tạo các TileMap viền, phầm chứa màu  hiển thị và phần màu xám
                     allPixels.Add(new Vector2Int(x, y), pixel);
                     CreatePixel(tileMapRenColor, pixel.position, pixel.graycolor, _smallTile);
                     CreatePixel(tileMapWhiteRenColor, pixel.position, Color.white, _smallTile);
                     CreatePixel(tileMapLine, pixel.position, Color.black, _lineBigTile);
 
                     //ID Color
-                    if (!_color_ID.ContainsKey(colors[x + y * texture.width]))//mau moi
+                    if (!_color_ID.ContainsKey(colors[x + y * texture.width]))//nếu phát hiện màu mới
                     {
                         allPixels[new Vector2Int(x, y)].id = _countColor;
                         _color_ID.Add(colors[x + y * texture.width], _countColor);
                         _allPixelGroups.Add(_countColor, new List<Node>());
                         _allPixelGroups[_countColor].Add(pixel);
+                        //Đánh số thứ tự cho ô của tileMap hiển thị số thứ tự
                         CreatePixel(tilemapNumber, pixel.position, Color.black, number[_countColor - 1]);
-                        _countColor++;
+                        _countColor++;//Đếm tăng lên
 
                     }
-                    else//mau cu
+                    else//nếu đã phát hiện màu này rồi
                     {
+                        //Đánh số thứ tự cho ô của tileMap hiển thị số thứ tự
                         int foundId = _color_ID.GetValueOrDefault(colors[x + y * texture.width]);
                         allPixels[new Vector2Int(x, y)].id = foundId;
                         _allPixelGroups[foundId].Add(pixel);
@@ -196,6 +206,7 @@ public class GameManager : MonoBehaviour
     }
     void CreateGetColotButton()
     {
+        //Tính toán số lượng trang cần tạo
         int countGetColorBtn = _color_ID.Count;
         totalPage = (_countColor - 1) / 10 + 1;
         if ((_countColor - 1) % 10 == 0)
@@ -206,11 +217,10 @@ public class GameManager : MonoBehaviour
         pageColorSwipe.totalPages = totalPage + 1;
         pageColorSwipe.currentPage = 2;
         //-------------------------//
+        //Tạo ra các trang, mỗi trang gồm 10 ô chứa màu
         int i = 1;
         foreach (KeyValuePair<Color, int> c in _color_ID)
         {
-
-
             if (i % 10 == 1)
             {
                 GameObject x = Instantiate(pageprefabs, pageParent.transform);

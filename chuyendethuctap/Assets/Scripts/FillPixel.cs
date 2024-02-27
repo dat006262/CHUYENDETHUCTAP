@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 //using System.Drawing;
 //using System.Drawing;
@@ -35,7 +35,6 @@ public class FillPixel : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
             InvokeWhenDown();
         }
         if (Input.GetMouseButton(0) && firstclicktrue)
@@ -50,16 +49,14 @@ public class FillPixel : MonoBehaviour
     }
     void InvokeWhenDown()
     {
-        // SoundManager.Instance.PlaySfxRewind(Resources.Load<AudioClip>("Sounds/tap"));
+        //Đọc vị trí con trỏ chuột rồi làm tròn để đưa ra vị trí tileMap
         Vector3 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = 0;
         Vector3Int moucell = tileMapLine.WorldToCell(mouseWorldPos);
         Vector2Int coord = new Vector2Int { x = moucell.x, y = moucell.y };
-        //LUU TRI VI TRI CON TRO CHUOT
+
         if (!GameManager.Instance.allPixels.ContainsKey(coord)) { return; }
         onPoiterDown?.Invoke(coord);
-
-
     }
     void InvokeWhenHorver()
     {
@@ -110,6 +107,8 @@ public class FillPixel : MonoBehaviour
         {
             if (GameManager.Instance.allPixels.ContainsKey(coord))
             {
+                //Kiểm tra xem màu của ô chứa màu và màu của ô cần tô có giống nhau không
+                //Nếu giống tô màu đúng; Nếu sai tô màu sai
                 if (CheckColor(GameManager.Instance.allPixels[coord].color))
                 {
 
@@ -121,8 +120,6 @@ public class FillPixel : MonoBehaviour
                 {
                     if (firstclicktrue)
                     {
-
-                        //FillWrong(coord);
                         ActionDraw.FillWrong(coord, tileMapRenColor);
                     }
                 }
@@ -138,7 +135,6 @@ public class FillPixel : MonoBehaviour
         {
             if (!firstclicktrue) firstclicktrue = true;
             ActionDraw.DrawAround(coord, tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteColorNumber);
-            //  StartCoroutine(IE_DrawAround(coord, tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteColorNumber));
 
         }
     }

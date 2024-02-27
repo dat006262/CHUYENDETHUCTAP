@@ -19,24 +19,8 @@ public class TabManager : MonoBehaviour
     public List<GameObject> listTab = new List<GameObject>();
     public DRAWEDTAB dRAWEDTAB = DRAWEDTAB.INPROGRESS;
     public List<GameObject> listDrawedTab = new List<GameObject>();
-    private void OnEnable()
-    {
 
-    }
-    private void OnDisable()
-    {
 
-    }
-    //public void OpenTab(Tab tab)
-    //{
-    //    switch (tab)
-    //    {
-    //        case Tab.LIBRARY: break;
-    //        case Tab.DRAWED: break;
-    //        case Tab.CREATE: break;
-    //        default: break;
-    //    }
-    //}
     public void CloseTab()
     {
         foreach (var tab in listTab)

@@ -41,16 +41,22 @@ public class OpenGamePlayBtn : BaseButton
         if (imageStat.Equals(ImageStat.INPROGRESS))
         {
             Sprite blackwhite = TextureChange.CreatBlackAndWhiteSpriteDrawed(create);
+            blackwhite.texture.wrapMode = UnityEngine.TextureWrapMode.Clamp;
+            blackwhite.texture.filterMode = FilterMode.Point;
             Image.sprite = blackwhite;
         }
         else if (imageStat.Equals(ImageStat.COMPLETE))
         {
             Image.sprite = create;
+            create.texture.filterMode = FilterMode.Point;
+            create.texture.wrapMode = UnityEngine.TextureWrapMode.Clamp;
+            create.texture.filterMode = FilterMode.Point;
             ImageComplete.SetActive(true);
         }
         else
         {
             Sprite blackwhite = TextureChange.CreatBlackAndWhiteSprite(create);
+            blackwhite.texture.filterMode = FilterMode.Point;
             Image.sprite = blackwhite;
         }
     }

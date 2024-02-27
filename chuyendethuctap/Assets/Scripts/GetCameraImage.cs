@@ -84,8 +84,6 @@ public class GetCameraImage : MonoBehaviour
 
     private IEnumerator AskForPermissions()
     {
-
-
         List<bool> permissions = new List<bool>() { false, false, false };
         List<bool> permissionsAsked = new List<bool>() { false, false, false };
         List<Action> actions = new List<Action>()
@@ -99,15 +97,7 @@ public class GetCameraImage : MonoBehaviour
                 return;
             }
         }),
-        new Action(() => {
-            permissions[1] = Permission.HasUserAuthorizedPermission(Permission.Camera);
-            if (!permissions[1] && !permissionsAsked[1])
-            {
-                Permission.RequestUserPermission(Permission.Camera);
-                permissionsAsked[1] = true;
-                return;
-            }
-        }),
+
         new Action(() => {
             permissions[2] = Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite);
             if (!permissions[2] && !permissionsAsked[2])
@@ -116,6 +106,19 @@ public class GetCameraImage : MonoBehaviour
                 permissionsAsked[2] = true;
                 return;
             }
+        }),
+           new Action(() => {
+           permissions[1] = Permission.HasUserAuthorizedPermission(Permission.Camera);
+           if (!permissions[1] && !permissionsAsked[1])
+           {
+                //TEST
+                PermissionCallbacks permissionCallbacks = new PermissionCallbacks();
+                permissionCallbacks.PermissionGranted += (a)=>{ TurnOnCam(0);};
+                //TEST
+                Permission.RequestUserPermission(Permission.Camera, permissionCallbacks);
+                permissionsAsked[1] = true;
+                return;
+           }
         })
     };
         for (int i = 0; i < permissionsAsked.Count;)
@@ -123,7 +126,6 @@ public class GetCameraImage : MonoBehaviour
             actions[i].Invoke();
             if (permissions[i])
             {
-                Debug.Log("Reqquest" + $"{i}");
                 ++i;
             }
             yield return new WaitForEndOfFrame();
@@ -147,6 +149,7 @@ public class GetCameraImage : MonoBehaviour
     }
     public void TurnOnCam(int input)
     {
+#if !UNITY_EDITOR
         nowCAm = input;
         isCamOn = true;
         devices = WebCamTexture.devices;
@@ -163,6 +166,7 @@ public class GetCameraImage : MonoBehaviour
         {
             case 0:
                 {
+
                     CamScreenBack.rotation = Quaternion.Euler(0, 0, -90);
                     imgDisplay.uvRect = new Rect(0, 1, 1, 1);
                     break;
@@ -173,9 +177,10 @@ public class GetCameraImage : MonoBehaviour
                     imgDisplay.uvRect = new Rect(0, 1, 1, -1);
                     break;
                 }
+
         }
 
-        webcamTexture = new WebCamTexture(devices[input].name, 480, 480);
+        webcamTexture = new WebCamTexture(devices[nowCAm].name, 480, 480);
         grayScaleMaterial.mainTexture = webcamTexture;
         webcamTexture.Play();
         webcamTexture.filterMode = FilterMode.Trilinear;
@@ -183,6 +188,31 @@ public class GetCameraImage : MonoBehaviour
         imgDisplay.material = grayScaleMaterial;
         imgDisplay.texture = webcamTexture;
 
+#else
+
+        isCamOn = true;
+        devices = WebCamTexture.devices;
+        if (grayScaleMaterial != null)
+        {
+            DestroyImmediate(grayScaleMaterial);
+        }
+        //if (webcamTexture != null)
+        //{
+        //    DestroyImmediate(webcamTexture);
+        //}
+        grayScaleMaterial = new Material(shader);
+
+        CamScreenBack.rotation = Quaternion.Euler(0, 0, -0);
+        imgDisplay.uvRect = new Rect(0, 1, 1, 1);
+
+        webcamTexture = new WebCamTexture(devices[0].name, 480, 480);
+        grayScaleMaterial.mainTexture = webcamTexture;
+        webcamTexture.Play();
+        webcamTexture.filterMode = FilterMode.Point;
+
+        imgDisplay.material = grayScaleMaterial;
+        imgDisplay.texture = webcamTexture;
+#endif
     }
     public void TurnOffCam()
     {
@@ -196,6 +226,9 @@ public class GetCameraImage : MonoBehaviour
     }
     public void ChangeCam()
     {
+#if UNITY_EDITOR
+        return;
+#endif
         if (devices.Length < 2) return;
         switch (nowCAm)
         {
@@ -247,7 +280,7 @@ public class GetCameraImage : MonoBehaviour
         texture.Apply();
         TextureChange.Bilinear(texture, (int)size, (int)size);
         texture.Apply();
-
+#if !UNITY_EDITOR
         switch (nowCAm)
         {
             case 0:
@@ -262,6 +295,9 @@ public class GetCameraImage : MonoBehaviour
                     break;
                 }
         }
+#else
+
+#endif
         Sprite create = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
 
         return create;

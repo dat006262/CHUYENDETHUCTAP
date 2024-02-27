@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -120,6 +120,7 @@ public class TextureChange : MonoBehaviour
     public static Texture2D Bilinear(Texture2D source, int targetWidth, int targetHeight)
     {
         Color[] pixels = new Color[targetWidth * targetHeight];
+        //Tính toán vị trí điểm ảnh mới 
         float incX = (1.0f / targetWidth);
         float incY = (1.0f / targetHeight);
         float posX = (incX / 2.0f);
@@ -127,7 +128,16 @@ public class TextureChange : MonoBehaviour
 
         for (int i = 0; i < pixels.Length; i++)
         {
-            pixels[i] = source.GetPixelBilinear(posY, posX);
+            pixels[i] = source.GetPixelBilinear(posY, posX);//hàm lấy điểm màu trung bình tại vị trí nào đó
+            if (pixels[i].a < 0.5f)
+            {
+                pixels[i].a = 0;
+            }
+            else
+            {
+                pixels[i].a = 1;
+            }
+
             posY += incY;
             if (posY >= 1.0f)
             {
@@ -135,13 +145,12 @@ public class TextureChange : MonoBehaviour
                 posX += incX;
             }
         }
+        //Tạo ảnh mới
         Texture2D output = new Texture2D(targetWidth, targetHeight, TextureFormat.ARGB32, false);
         output.SetPixels(pixels);
         output.Apply();
         return output;
-        /* source.Reinitialize(targetWidth, targetHeight);
-         source.SetPixels(pixels);
-         source.Apply();*/
+
     }
     public static Texture2D rotate90(Texture2D orig)
     {
