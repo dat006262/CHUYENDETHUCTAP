@@ -30,6 +30,8 @@ public class ActionDraw
         {
             DataManager.Instance.dataInProgress.SetImageStatComplete(GameConfig.Instance.spriteInGame.name);
             Debug.Log("WIM");
+            InterstitialAdExample.intances.LoadAd();
+            InterstitialAdExample.intances.ShowAd();
             SceneManager.LoadScene("HomeUI");
 
         }
