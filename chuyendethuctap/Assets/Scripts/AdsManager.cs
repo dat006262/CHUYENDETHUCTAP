@@ -29,8 +29,6 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
             Advertisement.Initialize(_gameId, _testMode, this);
         }
     }
-
-
     public void OnInitializationComplete()
     {
         Debug.Log("Unity Ads initialization complete.");
