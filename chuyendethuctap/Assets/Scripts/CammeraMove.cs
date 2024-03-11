@@ -66,8 +66,8 @@ public class CammeraMove : MonoBehaviour
 
         if (Input.GetMouseButton(0) && canMoveCam)
         {
-            Debug.Log("MoveCam");
-            Vector3 direction = StartTouch - cam.ScreenToWorldPoint(Input.mousePosition);//khi cam move theo thi directon tien toi vector0
+            Vector3 direction = StartTouch - cam.ScreenToWorldPoint(Input.mousePosition);
+            //khi cam move theo thi directon tien toi vector0
             camlookat.transform.position = ClampCamera(camlookat.transform.position + direction);
 
         }

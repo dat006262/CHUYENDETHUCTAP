@@ -31,7 +31,6 @@ public class ActionDraw
             DataManager.Instance.dataInProgress.SetImageStatComplete(GameConfig.Instance.spriteInGame.name);
             Debug.Log("WIM");
             InterstitialAdExample.intances.LoadAd();
-            InterstitialAdExample.intances.ShowAd();
             SceneManager.LoadScene("HomeUI");
 
         }
@@ -61,11 +60,12 @@ public class ActionDraw
         Vector3Int cell = new Vector3Int(position.x, position.y, 0);
         tileMap.SetTile(cell, null);
     }
-    public static void FillBoomb(Vector2Int input, Tilemap tileMapRenColor, Tilemap tileMapLine, Tilemap tilemapNumber, Tilemap tilemapWhiteRenColor)
+    public static void FillBoomb(Vector2Int input, Tilemap tileMapRenColor, Tilemap tileMapLine,
+        Tilemap tilemapNumber, Tilemap tilemapWhiteRenColor)
     {
         if (GameManager.Instance.allPixels[input].isDrawBomb) return;
         else GameManager.Instance.allPixels[input].isDrawBomb = true;
-        Debug.Log("FillBomb");
+
         for (int m = input.x - 5; m <= input.x + 5; m++)
         {
             for (int n = input.y - 5; n <= input.y + 5; n++)
@@ -84,7 +84,8 @@ public class ActionDraw
                     {
                         if (!GameManager.Instance.allPixels[new Vector2Int(m, n)].filledTrue)
                         {
-                            FillTrue(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor);
+                            FillTrue(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber,
+                                tilemapWhiteRenColor);
                             //Fill
                         }
                     }
@@ -94,7 +95,8 @@ public class ActionDraw
         }
     }
 
-    public static void DrawAround(Vector2Int input, Tilemap tileMapRenColor, Tilemap tileMapLine, Tilemap tilemapNumber, Tilemap tilemapWhiteRenColor)
+    public static void DrawAround(Vector2Int input, Tilemap tileMapRenColor, Tilemap tileMapLine,
+        Tilemap tilemapNumber, Tilemap tilemapWhiteRenColor)
     {
         int id = GameManager.Instance.allPixels[input].id;
         for (int m = input.x - 1; m <= input.x + 1; m++)
@@ -117,7 +119,8 @@ public class ActionDraw
                         FillTrue(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor);
                         DrawAround(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor);
                     }
-                    else if (GameManager.Instance.allPixels[new Vector2Int(m, n)].filledTrue && !GameManager.Instance.allPixels[new Vector2Int(m, n)].isCheckDrawStick)
+                    else if (GameManager.Instance.allPixels[new Vector2Int(m, n)].filledTrue
+                        && !GameManager.Instance.allPixels[new Vector2Int(m, n)].isCheckDrawStick)
                     {
                         GameManager.Instance.allPixels[new Vector2Int(m, n)].isCheckDrawStick = true;
                         DrawAround(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor);

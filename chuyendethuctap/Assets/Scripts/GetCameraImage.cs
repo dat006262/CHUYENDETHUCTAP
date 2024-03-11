@@ -4,12 +4,9 @@ using System.Collections.Generic;
 //using System.Drawing;
 using System.IO;
 using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Android;
-using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
-using UnityEngine.Windows.WebCam;
 #if UNITY_EDITOR
 [CustomEditor(typeof(GetCameraImage))]
 public class GetCameraImageEditor : Editor
