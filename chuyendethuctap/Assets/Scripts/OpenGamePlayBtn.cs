@@ -27,7 +27,8 @@ public class OpenGamePlayBtn : BaseButton
     {
         if (imageStat.Equals(ImageStat.COMPLETE)) { return; }
         SoundManager.Instance.PlaySfxRewind(Resources.Load<AudioClip>("Sounds/tap"));
-        SceneManager.LoadScene("GamePlay");
+        //  SceneManager.LoadScene("GamePlay");
+        LoadingScene.Instance.LoadScene("GamePlay");
         GameConfig.Instance.spriteInGame = spriteSource;
     }
     public void LoadImageRenderer()

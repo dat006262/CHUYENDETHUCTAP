@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     {
         slider.onValueChanged.AddListener(OnslideValueChange);
         Instance = this;
+
     }
     void OnslideValueChange(float value)
     {
@@ -81,14 +82,7 @@ public class GameManager : MonoBehaviour
         /*        idNow = allGetColorButton[0].id;
                 colorNow = allGetColorButton[0].color;*/
     }
-    public void LoadScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    void ClearAll()
-    {
 
-    }
     public void NewGame(Sprite input)
     {
         Debug.Log("NEWGAME WITH" + input.name);
@@ -111,7 +105,7 @@ public class GameManager : MonoBehaviour
     }
     public void BackToMenu()
     {
-        SceneManager.LoadScene("HomeUI");
+        LoadingScene.Instance.LoadScene("HomeUI");
     }
     Texture2D ChangeTexture(Sprite sprite, int size)
     {

@@ -57,7 +57,7 @@ public class Loading : MonoBehaviour
             loadingPercent.text = (percent >= 100) ? "100%" : $"{percent}%";
             yield return new WaitForSeconds(0.01f);
         }
-        SceneManager.LoadScene("HomeUI");
+        SceneManager.LoadSceneAsync("HomeUI");
 
         SoundManager.Instance.PlayGameMusic();
     }
