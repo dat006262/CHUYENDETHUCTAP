@@ -12,7 +12,7 @@ public class GlobalSetting : SingletonMonoBehaviour<GlobalSetting>
 #if UNITY_EDITOR
         Debug.unityLogger.logEnabled = true;
 #else
- Debug.logger.logEnabled = false;
+ Debug.unityLogger.logEnabled = false;
 #endif
 #if !UNITY_EDITOR
         Application.targetFrameRate = 60;
@@ -33,17 +33,7 @@ public class GlobalSetting : SingletonMonoBehaviour<GlobalSetting>
     }
 
     #endregion
-    #region PUBLIC========================================================
-    //public static void AddPopupBase(BasePopup basePopup)
-    //{
-    //    BasePopups.Add(basePopup);
-    //}
 
-    #endregion
-
-    #region PRIVATE===================================================
-
-    #endregion
 
 
 }

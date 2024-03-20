@@ -13,17 +13,34 @@ public class ShowDataManager : MonoBehaviour
     public OpenGamePlayBtn OpenGamePlayBtnPrefabs;
     public GameObject main;
     public GameObject camTakePicture;
+    public LibraryScroll libraryScrollPrefabs;
     private void Awake()
     {
         Instance = this;
     }
     public void SpawmLibrary_New(List<Sprite> sprites)
     {
+        int i = 0;
         foreach (var sprite in sprites)
         {
-            OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentLibrary);
+            LibraryScroll libraryScroll;
+            if (i % 6 == 0)
+            {
+                libraryScroll = Instantiate(libraryScrollPrefabs, contentLibrary);
+            }
+            else
+            {
+                libraryScroll = contentLibrary.GetChild(i / 6 + 1).GetComponent<LibraryScroll>();
+                if (libraryScroll is null)
+                {
+                    Debug.LogError("libraryScroll is null");
+                }
+            };
+            i++;
+            OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, libraryScroll.Content.transform);
             openGamePlayBtn.spriteSource = sprite;
             openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(sprite.name);
+            if (i == 10) break;
         }
     }
     public void SpawnDrawed(List<Sprite> sprites)
