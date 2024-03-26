@@ -2,7 +2,7 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CammeraMove : MonoBehaviour
+public class CammeraMove : SingletonMonoBehaviour<CammeraMove>
 {
     [SerializeField] private Camera cam;
     [SerializeField] private Vector3 ceterGame;
@@ -25,11 +25,11 @@ public class CammeraMove : MonoBehaviour
     private void Start()
     {
 
-        virturalcam.m_Lens.OrthographicSize = GameManager.Instance.TestSize * scale;
+        virturalcam.m_Lens.OrthographicSize = GameManager.Instance.sizeMap * scale;
 
         slider.onValueChanged.AddListener(OnSliderValueChanged);
         slider.value = 0;
-        ceterGame = new Vector3(GameManager.Instance.TestSize / 2, GameManager.Instance.TestSize / 2, 0);//25,25,0
+        ceterGame = new Vector3(GameManager.Instance.sizeMap / 2, GameManager.Instance.sizeMap / 2, 0);//25,25,0
     }
 
     private void Update()
@@ -79,7 +79,7 @@ public class CammeraMove : MonoBehaviour
     }
     private void OnSliderValueChanged(float value)
     {
-        virturalcam.m_Lens.OrthographicSize = Mathf.Lerp(GameManager.Instance.TestSize * scale, 10, value);
+        virturalcam.m_Lens.OrthographicSize = Mathf.Lerp(GameManager.Instance.sizeMap * scale, 10, value);
         camlookat.transform.position = ClampCamera(camlookat.transform.position);
     }
     private Vector3 ClampCamera(Vector3 targerPosition)//truyen vao 1 vector3 va tra ve 1 vector3 hop ly voi Cammera
@@ -90,11 +90,11 @@ public class CammeraMove : MonoBehaviour
         //height
 
         //width
-        float mixX = (ceterGame.x - GameManager.Instance.TestSize * scale * cam.aspect) + _camwidth;
-        float maxX = (ceterGame.x + GameManager.Instance.TestSize * scale * cam.aspect) - _camwidth;
+        float mixX = (ceterGame.x - GameManager.Instance.sizeMap * scale * cam.aspect) + _camwidth;
+        float maxX = (ceterGame.x + GameManager.Instance.sizeMap * scale * cam.aspect) - _camwidth;
 
-        float mixY = (ceterGame.y - GameManager.Instance.TestSize * scale * cam.aspect) + _camwidth - 10 * (1 - slider.value);
-        float maxY = (ceterGame.y + GameManager.Instance.TestSize * scale * cam.aspect) - _camwidth - 10 * (1 - slider.value);
+        float mixY = (ceterGame.y - GameManager.Instance.sizeMap * scale * cam.aspect) + _camwidth - 10 * (1 - slider.value);
+        float maxY = (ceterGame.y + GameManager.Instance.sizeMap * scale * cam.aspect) - _camwidth - 10 * (1 - slider.value);
 
 
 
@@ -109,4 +109,9 @@ public class CammeraMove : MonoBehaviour
         slider.value += increment;
         slider.value = Mathf.Clamp01(slider.value);
     }
+    public void SetCamAtStart()
+    {
+        camlookat.transform.position = ClampCamera(camlookat.transform.position);
+    }
+
 }

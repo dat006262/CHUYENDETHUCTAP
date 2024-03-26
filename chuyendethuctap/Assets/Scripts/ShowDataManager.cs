@@ -66,11 +66,11 @@ public class ShowDataManager : MonoBehaviour
     {
         foreach (var sprite in sprites)
         {
+
             OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentCreate);
             openGamePlayBtn.spriteSource = sprite;
             openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(sprite.name);
-
-
+            openGamePlayBtn.size = Mathf.Min(sprite.texture.width, sprite.texture.height);
         }
     }
     public void SpawnOneBtnCreated(Sprite sprite)

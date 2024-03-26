@@ -55,6 +55,7 @@ public class GetCameraImage : MonoBehaviour
     private void Start()
     {
         slider.onValueChanged.AddListener(OnSliderValueChanged);
+
     }
 
     private void OnSliderValueChanged(float value)
@@ -210,6 +211,8 @@ public class GetCameraImage : MonoBehaviour
         imgDisplay.material = grayScaleMaterial;
         imgDisplay.texture = webcamTexture;
 #endif
+        grayScaleMaterial.SetFloat("_GridWidth", (int)size);
+        grayScaleMaterial.SetFloat("_GridHeight", (int)size);
     }
     public void TurnOffCam()
     {
@@ -275,7 +278,7 @@ public class GetCameraImage : MonoBehaviour
 
         texture.SetPixels(test.GetPixels());
         texture.Apply();
-        TextureChange.Bilinear(texture, (int)size, (int)size);
+        texture = TextureChange.Bilinear(texture, (int)size, (int)size);
         texture.Apply();
 #if !UNITY_EDITOR
         switch (nowCAm)
@@ -302,12 +305,14 @@ public class GetCameraImage : MonoBehaviour
     public void CreateAPictureToDraw()
     {
         Sprite sprite = TakePicture();
+        int sizeImage = (int)size;
         // blacksprite = PictureControll.Instance_picture.CreatBlackAndWhiteSprite(sprite);//tao anh den trang
         // PictureControll.Instance_picture.CreateBtnLoad(sprite, blacksprite, gridCreate);
         ShowDataManager.Instance.SpawnOneBtnCreated(sprite);
         SaveImageToFile(sprite.texture, "Create" + $"{DataManager.Instance.dataInProgress.WebCamPictureCount}", "/CamPicture");//luu anh thuong vao folder
         DataManager.Instance.dataInProgress.SetCamImageCount(DataManager.Instance.dataInProgress.WebCamPictureCount + 1);
         ;
+
 
 
     }

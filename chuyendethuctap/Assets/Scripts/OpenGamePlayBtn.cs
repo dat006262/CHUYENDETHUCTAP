@@ -19,14 +19,15 @@ public class OpenGamePlayBtn : BaseButton
     public override void Start()
     {
         base.Start();
-
         LoadImageRenderer();
 
     }
     protected override void OnClick()
     {
         if (imageStat.Equals(ImageStat.COMPLETE)) { return; }
+        GlobalSetting.Instance.SizeTextureLevel = size;
         SoundManager.Instance.PlaySfxRewind(Resources.Load<AudioClip>("Sounds/tap"));
+
         //  SceneManager.LoadScene("GamePlay");
         LoadingScene.Instance.LoadScene("GamePlay");
         GameConfig.Instance.spriteInGame = spriteSource;

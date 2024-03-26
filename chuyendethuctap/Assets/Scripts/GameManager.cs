@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public int TestSize = 50;
+    [SerializeField] public int sizeMap = 50;
     //-------------------GamePlay----------//
     [HideInInspector] public int idNow;
     [HideInInspector] public Color colorNow;
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
     {
         slider.onValueChanged.AddListener(OnslideValueChange);
         Instance = this;
-
+        sizeMap = GlobalSetting.Instance.SizeTextureLevel;
     }
     void OnslideValueChange(float value)
     {
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("NEWGAME WITH" + input.name);
 
-        textureTrue = ChangeTexture(input, TestSize);//tao anh 50*50dung format
+        textureTrue = ChangeTexture(input, sizeMap);//tao anh 50*50dung format
         if (!DataManager.Instance.dataInProgress.matrix.ContainsKey(input.name))
         {
             DataManager.Instance.dataInProgress.AddMatrix(input.name, new bool[textureTrue.width, textureTrue.height]);
@@ -102,6 +102,8 @@ public class GameManager : MonoBehaviour
         getColorButtonNow.TurnOnHighLight();
         //Tô các màu đã tô từ lần chơi trước
         FillPixel.Instance.LoadInProgress();
+
+        CammeraMove.intances.SetCamAtStart();
     }
     public void BackToMenu()
     {

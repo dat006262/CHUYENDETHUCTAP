@@ -5,7 +5,7 @@ using UnityEngine;
 public class GlobalSetting : SingletonMonoBehaviour<GlobalSetting>
 {
     #region INIT, REF===============================
-
+    public int SizeTextureLevel;
     //public static List<BasePopup> BasePopups = new List<BasePopup>();
     public override void Awake()
     {
