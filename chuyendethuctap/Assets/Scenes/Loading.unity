@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e458789554bb8e543b2188f484d39a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SizeTextureLevel: 0
 --- !u!1 &985379030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,27 +1323,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5149809613406099430, guid: a0fa0f8473245de46a337c2fd788513b, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5149809613406099430, guid: a0fa0f8473245de46a337c2fd788513b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5149809613406099430, guid: a0fa0f8473245de46a337c2fd788513b, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5149809613406099430, guid: a0fa0f8473245de46a337c2fd788513b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5149809613406099430, guid: a0fa0f8473245de46a337c2fd788513b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1080
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5149809613406099430, guid: a0fa0f8473245de46a337c2fd788513b, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5149809613406099430, guid: a0fa0f8473245de46a337c2fd788513b, type: 3}
       propertyPath: m_LocalScale.x
