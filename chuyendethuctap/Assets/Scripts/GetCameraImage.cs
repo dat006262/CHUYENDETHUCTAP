@@ -250,7 +250,7 @@ public class GetCameraImage : MonoBehaviour
 
         byte[] bytes = textureToSave.EncodeToPNG();
         string filename = name;
-        Debug.LogError("persistenppath" + Application.persistentDataPath);
+        Debug.Log("persistenppath" + Application.persistentDataPath);
         string destination = Application.persistentDataPath + "/" + name + ".png";
         File.WriteAllBytes(destination, bytes);
     }
@@ -258,7 +258,7 @@ public class GetCameraImage : MonoBehaviour
     {
         Texture2D imageTexture;
         byte[] imageBytes = File.ReadAllBytes(Application.persistentDataPath + "/" + imageFileName + ".png");
-        Debug.LogError("Read:" + Application.persistentDataPath + "/" + imageFileName + ".png");
+        Debug.Log("Read:" + Application.persistentDataPath + "/" + imageFileName + ".png");
         imageTexture = new Texture2D(2, 2);
         imageTexture.filterMode = FilterMode.Point;
         imageTexture.LoadImage(imageBytes);

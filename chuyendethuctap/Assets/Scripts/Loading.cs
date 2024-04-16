@@ -24,7 +24,7 @@ public class Loading : MonoBehaviour
     void Start()
     {
         InitInfor();
-        LogoAnim();
+        // LogoAnim();
         StartCoroutine(Load());
 
         //  DisPlayBG();
@@ -67,11 +67,5 @@ public class Loading : MonoBehaviour
         logo.transform.DOLocalMoveY(logo.transform.localPosition.y + 32f, loadTime).SetEase(Ease.OutQuad).SetLoops(-1, LoopType.Yoyo).SetDelay(0.1f);
     }
 
-    private void DisPlayBG()
-    {
-        //if (DHome.IsTimeChristMas())
-        //{
-        //    i_BG.sprite = _bgMoonFestival;
-        //}
-    }
+
 }
