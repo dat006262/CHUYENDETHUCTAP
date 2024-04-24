@@ -1,5 +1,6 @@
 using Firebase.Extensions;
 using Firebase.Storage;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using UnityEngine;
 using UnityEngine.U2D;
 public class DataManager : MonoBehaviour
 {
+
     public static DataManager Instance;
     public Firebase.FirebaseApp app = null;
     FirebaseStorage storage;
@@ -23,31 +25,47 @@ public class DataManager : MonoBehaviour
         app = Firebase.FirebaseApp.DefaultInstance;
         storage = FirebaseStorage.DefaultInstance;
         dataInProgress.Load();
-        GetAllSprite();
 
     }
     private void Start()
     {
-        LoadAllSpriteCreated();
-        ShowDataManager.Instance.SpawmLibrary_New(allsprites);
-        ShowDataManager.Instance.SpawnDrawed(allsprites);
-        ShowDataManager.Instance.SpawnDrawed(folderCreate);
-        ShowDataManager.Instance.SpawnCreated(folderCreate);
+        StartCoroutine(
+         LoadAllSprite(() =>
+        {
+            ShowDataManager.Instance.SpawmLibrary_New(allsprites);
+            ShowDataManager.Instance.SpawnDrawed(allsprites);
+            ShowDataManager.Instance.SpawnDrawed(folderCreate);
+            ShowDataManager.Instance.SpawnCreated(folderCreate);
+        })
+        );
+
     }
     IEnumerable test()
     {
         yield return new WaitForSeconds(2f);
 
     }
-    public void GetAllSprite()
+    IEnumerator LoadAllSprite(Action completeLoad = null)
+    {
+        bool isLoadComplete = false;
+        GetSpritesFromResource();
+        GetAllSpriteCreated();
+        GetSpriteFromStorage(() => { isLoadComplete = true; Debug.Log("LoadComplete"); });
+        yield return new WaitUntil(() => isLoadComplete);
+        completeLoad?.Invoke();
+    }
+    public void GetSpritesFromResource()
     {
         allsprites = Resources.LoadAll<Sprite>("New").ToList();
-        StorageReference storageReference = storage.GetReferenceFromUrl("gs://test19-1.appspot.com/18-1.png");
-        GetASpriteFromStorage(storageReference);
+
 
     }
-
-    public void GetASpriteFromStorage(StorageReference reference)
+    public void GetSpriteFromStorage(Action isComplete = null)
+    {
+        StorageReference storageReference = storage.GetReferenceFromUrl("gs://test19-1.appspot.com/18-1.png");
+        GetASpriteFromStorage(storageReference, isComplete);
+    }
+    public void GetASpriteFromStorage(StorageReference reference, Action isComplete = null)
     {
         const long maxAllowedSize = 1 * 1024 * 1024;
         reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task =>
@@ -68,10 +86,11 @@ public class DataManager : MonoBehaviour
                 sprite.name = "123";
                 allsprites.Add(sprite);
                 Debug.Log("Finished downloading!");
+                isComplete?.Invoke();
             }
         });
     }
-    public void LoadAllSpriteCreated()
+    public void GetAllSpriteCreated()
     {
         for (int i = 0; i < dataInProgress.WebCamPictureCount; i++)
         {
