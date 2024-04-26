@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 //using System.Drawing;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public int sizeMap = 50;
+    [SerializeField] public int sizeMap => GameConfig.Instance.spriteGameSize;
     //-------------------GamePlay----------//
     [HideInInspector] public int idNow;
     [HideInInspector] public Color colorNow;
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
     private int _countColor;
     Dictionary<Color, int> _color_ID = new Dictionary<Color, int>();
     public Dictionary<int, List<Node>> _allPixelGroups = new Dictionary<int, List<Node>>();
-    [HideInInspector] public Dictionary<Vector2Int, Node> allPixels;
+    [HideInInspector] public Dictionary<Vector2Int, Node> allPixels = new Dictionary<Vector2Int, Node>();
     //---------SaveGetColorButton-------------//
     [HideInInspector] public int totalPage;
     [SerializeField] private GameObject pageParent;
@@ -66,25 +67,39 @@ public class GameManager : MonoBehaviour
     {
         slider.onValueChanged.AddListener(OnslideValueChange);
         Instance = this;
-        sizeMap = GlobalSetting.Instance.SizeTextureLevel;
     }
     void OnslideValueChange(float value)
     {
         tileMapRenColor.color = new Color(1, 1, 1, Mathf.Clamp(1 - value, 0, 0.6f));
         tilemapNumber.color = new Color(1, 1, 1, value);
-        tileMapHighLight.color = new Color(1, 1, 1, 1 - value * 0.5f);
+        tileMapHighLight.color = new Color(1, 1, 1, Mathf.Clamp((1 - value * 0.5f), 0.8f, 1));
 
     }
-    private void Start()
-    {
-        NewGame(GameConfig.Instance.spriteInGame);
+    //private void Start()
+    //{
+    //    NewGame(GameConfig.Instance.spriteInGame);
 
-        /*        idNow = allGetColorButton[0].id;
-                colorNow = allGetColorButton[0].color;*/
+    //    /*        idNow = allGetColorButton[0].id;
+    //            colorNow = allGetColorButton[0].color;*/
+    //}
+
+    public void ClearAllGame()
+    {
+        tileMapLine.ClearAllTiles();
+        tileMapRenColor.ClearAllTiles();
+        tileMapHighLight.ClearAllTiles();
+        tilemapNumber.ClearAllTiles();
+        tileMapWhiteRenColor.ClearAllTiles();
+        _color_ID.Clear();
+        _countColor = 0;
+        _allPixelGroups.Clear();
+        allPixels.Clear();
+        totalPage = 0;
+        allGetColorButton.Clear();
     }
-
-    public void NewGame(Sprite input)
+    public void NewGame(Sprite input, Action isComplete = null)
     {
+        ClearAllGame();
         Debug.Log("NEWGAME WITH" + input.name);
 
         textureTrue = ChangeTexture(input, sizeMap);//tao anh 50*50dung format
@@ -104,10 +119,14 @@ public class GameManager : MonoBehaviour
         FillPixel.Instance.LoadInProgress();
 
         CammeraMove.intances.SetCamAtStart();
+        Debug.Log("Complete");
+        isComplete?.Invoke();
     }
     public void BackToMenu()
     {
-        LoadingScene.Instance.LoadScene("HomeUI");
+        GameControll.Instance.OpenHome();
+        GameConfig.Instance.nowGameButton.UpdateImageRender();
+        ShowDataManager.Instance.UpdateDrawed();
     }
     Texture2D ChangeTexture(Sprite sprite, int size)
     {

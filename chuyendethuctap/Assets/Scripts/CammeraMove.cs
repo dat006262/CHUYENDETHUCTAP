@@ -18,8 +18,9 @@ public class CammeraMove : SingletonMonoBehaviour<CammeraMove>
     //-----------------
 
     float scale => (Screen.height / (float)Screen.width) / (float)(1920 / (float)1080);
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         intances = this;
     }
     private void Start()
@@ -56,9 +57,6 @@ public class CammeraMove : SingletonMonoBehaviour<CammeraMove>
             Zoom(different * 0.0005f);
         }
 
-        //else if (Input.touchCount == 1)
-        //{
-        //    Debug.Log("MoveCam");
         if (Input.GetMouseButtonDown(0) && canMoveCam)
         {
             StartTouch = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -111,6 +109,9 @@ public class CammeraMove : SingletonMonoBehaviour<CammeraMove>
     }
     public void SetCamAtStart()
     {
+        ceterGame = new Vector3(GameManager.Instance.sizeMap / 2, GameManager.Instance.sizeMap / 2, 0);//25,25,0
+        camlookat.transform.position = ceterGame + Vector3.down * 10;
+        virturalcam.m_Lens.OrthographicSize = GameManager.Instance.sizeMap * scale;
         camlookat.transform.position = ClampCamera(camlookat.transform.position);
     }
 

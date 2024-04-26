@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class GameConfig : MonoBehaviour
 {
+    public GameObject GamePlayParent;
     public Sprite spriteInGame;
     public int spriteGameSize = 50;
+    public OpenGamePlayBtn nowGameButton;
+    public OpenGamePlayBtn drawGameButton;
     public static GameConfig Instance { get; private set; }
     private void Awake()
     {

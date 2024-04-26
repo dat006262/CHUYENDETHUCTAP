@@ -201,7 +201,7 @@ public class GetCameraImage : MonoBehaviour
         grayScaleMaterial = new Material(shader);
 
         CamScreenBack.rotation = Quaternion.Euler(0, 0, -0);
-        imgDisplay.uvRect = new Rect(0, 1, 1, 1);
+        imgDisplay.uvRect = new Rect(0, 1, -1, 1);
 
         webcamTexture = new WebCamTexture(devices[0].name, 480, 480);
         grayScaleMaterial.mainTexture = webcamTexture;
@@ -277,8 +277,10 @@ public class GetCameraImage : MonoBehaviour
         Texture2D test = TextureChange.ChangeToTexture2D(webcamTexture);
 
         texture.SetPixels(test.GetPixels());
+
         texture.Apply();
         texture = TextureChange.Bilinear(texture, (int)size, (int)size);
+
         texture.Apply();
 #if !UNITY_EDITOR
         switch (nowCAm)
@@ -296,7 +298,7 @@ public class GetCameraImage : MonoBehaviour
                 }
         }
 #else
-
+        texture = TextureChange.FlipY(texture);
 #endif
         Sprite create = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
 

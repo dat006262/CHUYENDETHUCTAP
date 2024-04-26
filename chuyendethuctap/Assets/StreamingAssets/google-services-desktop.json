@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "535815708098",
+    "project_id": "test19-1",
+    "storage_bucket": "test19-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535815708098:android:07001dab0cd0e79eda4a5b",
+        "android_client_info": {
+          "package_name": "com.google.firebase.level_up"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARxyvmIioA0YuoiEREXaS3UtB-N0gXdBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

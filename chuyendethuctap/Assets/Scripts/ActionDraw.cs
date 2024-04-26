@@ -65,7 +65,7 @@ public class ActionDraw
     {
         if (GameManager.Instance.allPixels[input].isDrawBomb) return;
         else GameManager.Instance.allPixels[input].isDrawBomb = true;
-        Debug.Log("FillBomb");
+
         for (int m = input.x - 5; m <= input.x + 5; m++)
         {
             for (int n = input.y - 5; n <= input.y + 5; n++)
@@ -118,6 +118,7 @@ public class ActionDraw
                     {
                         FillTrue(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor);
                         DrawAround(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor);
+
                     }
                     else if (GameManager.Instance.allPixels[new Vector2Int(m, n)].filledTrue
                         && !GameManager.Instance.allPixels[new Vector2Int(m, n)].isCheckDrawStick)
@@ -127,6 +128,7 @@ public class ActionDraw
 
                     }
                 }
+
             }
         }
     }

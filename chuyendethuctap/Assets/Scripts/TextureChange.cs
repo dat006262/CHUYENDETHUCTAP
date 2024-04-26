@@ -197,13 +197,33 @@ public class TextureChange : MonoBehaviour
         Color32[] newpix = new Color32[orig.width * orig.height];
         for (int i = 0; i < origpix.Length; i++)
         {
-            newpix[origpix.Length - i - 1] = origpix[i];
+            newpix[origpix.Length - 1 - i] = origpix[i];
         }
         Texture2D newtex = new Texture2D(orig.width, orig.height, orig.format, false);
         newtex.SetPixels32(newpix, 0);
         newtex.Apply();
         return newtex;
     }
+    public static Texture2D FlipY(Texture2D orig)
+    {
 
+        Color32[] origpix = orig.GetPixels32(0);
+        Color32[] newpix = new Color32[orig.width * orig.height];
+        for (int c = 0; c < orig.height; c++)
+        {
+            for (int r = 0; r < orig.width; r++)
+            {
+
+                newpix[orig.width * c + ((orig.width - 1) - r)] =
+                origpix[orig.width * c + r];
+            }
+        }
+        Texture2D newtex = new Texture2D(orig.width, orig.height, orig.format, false);
+        newtex.SetPixels32(newpix, 0);
+        newtex.Apply();
+        Debug.Log("FlipComplete");
+        return newtex;
+
+    }
 
 }

@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 5396673866123922799}
   spriteSource: {fileID: 0}
-  size: 50
+  size: 100
   Image: {fileID: 5396673865882751646}
   imageStat: 0
   ImageComplete: {fileID: 2051244973459419428}

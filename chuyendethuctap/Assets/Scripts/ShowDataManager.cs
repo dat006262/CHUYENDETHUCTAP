@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class ShowDataManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class ShowDataManager : MonoBehaviour
     public GameObject main;
     public GameObject camTakePicture;
     public LibraryScroll libraryScrollPrefabs;
+
+    Dictionary<string, OpenGamePlayBtn> SpriteName_BtnDrawed = new Dictionary<string, OpenGamePlayBtn>();
     private void Awake()
     {
         Instance = this;
@@ -36,11 +39,14 @@ public class ShowDataManager : MonoBehaviour
                     Debug.LogError("libraryScroll is null");
                 }
             };
-            i++;
+
             OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, libraryScroll.Content.transform);
             openGamePlayBtn.spriteSource = sprite;
             openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(sprite.name);
-            if (i == 10) break;
+            openGamePlayBtn.size = Mathf.Clamp(Mathf.Min(sprite.texture.width, sprite.texture.height), 10, 100);
+
+            openGamePlayBtn.LoadImageRenderer();
+            i++;
         }
     }
     public void SpawnDrawed(List<Sprite> sprites)
@@ -52,12 +58,19 @@ public class ShowDataManager : MonoBehaviour
                 OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentInProgress);
                 openGamePlayBtn.spriteSource = sprite;
                 openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(sprite.name);
+                openGamePlayBtn.size = Mathf.Clamp(Mathf.Min(sprite.texture.width, sprite.texture.height), 10, 100);
+
+                openGamePlayBtn.LoadImageRenderer();
+                SpriteName_BtnDrawed.Add(sprite.name, openGamePlayBtn);
             }
             else if (DataManager.Instance.dataInProgress.AddImageStat(sprite.name).Equals(ImageStat.COMPLETE))
             {
                 OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentComplete);
                 openGamePlayBtn.spriteSource = sprite;
                 openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(sprite.name);
+                openGamePlayBtn.size = Mathf.Clamp(Mathf.Min(sprite.texture.width, sprite.texture.height), 10, 100);
+
+                openGamePlayBtn.LoadImageRenderer();
             }
 
         }
@@ -70,7 +83,10 @@ public class ShowDataManager : MonoBehaviour
             OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentCreate);
             openGamePlayBtn.spriteSource = sprite;
             openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(sprite.name);
-            openGamePlayBtn.size = Mathf.Min(sprite.texture.width, sprite.texture.height);
+            openGamePlayBtn.size = Mathf.Clamp(Mathf.Min(sprite.texture.width, sprite.texture.height), 10, 100);
+
+            openGamePlayBtn.LoadImageRenderer();
+
         }
     }
     public void SpawnOneBtnCreated(Sprite sprite)
@@ -78,6 +94,54 @@ public class ShowDataManager : MonoBehaviour
         OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentCreate);
         openGamePlayBtn.spriteSource = sprite;
         openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(sprite.name);
+        openGamePlayBtn.size = Mathf.Clamp(Mathf.Min(sprite.texture.width, sprite.texture.height), 10, 100);
+
+        openGamePlayBtn.LoadImageRenderer();
+    }
+
+    public void UpdateDrawed()
+    {
+        if (DataManager.Instance.dataInProgress.AddImageStat(GameConfig.Instance.spriteInGame.name) == ImageStat.INPROGRESS)
+        {
+            if (SpriteName_BtnDrawed.ContainsKey(GameConfig.Instance.spriteInGame.name))
+            {
+                OpenGamePlayBtn update = SpriteName_BtnDrawed[GameConfig.Instance.spriteInGame.name];
+
+                update.UpdateImageRender();
+            }
+            else
+            {
+                OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentInProgress);
+                openGamePlayBtn.spriteSource = GameConfig.Instance.spriteInGame;
+                openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(GameConfig.Instance.spriteInGame.name);
+                SpriteName_BtnDrawed.Add(GameConfig.Instance.spriteInGame.name, openGamePlayBtn);
+                openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(GameConfig.Instance.spriteInGame.name);
+                openGamePlayBtn.size = Mathf.Clamp(Mathf.Min(GameConfig.Instance.spriteInGame.texture.width, GameConfig.Instance.spriteInGame.texture.height), 10, 100);
+
+                openGamePlayBtn.LoadImageRenderer();
+            }
+        }
+        else if (DataManager.Instance.dataInProgress.AddImageStat(GameConfig.Instance.spriteInGame.name) == ImageStat.COMPLETE)
+        {
+            OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentComplete);
+            openGamePlayBtn.spriteSource = GameConfig.Instance.spriteInGame;
+            openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(GameConfig.Instance.spriteInGame.name);
+            if (SpriteName_BtnDrawed.ContainsKey(GameConfig.Instance.spriteInGame.name))//HaveDrawed
+            {
+                OpenGamePlayBtn update = SpriteName_BtnDrawed[GameConfig.Instance.spriteInGame.name];
+                SpriteName_BtnDrawed.Remove(GameConfig.Instance.spriteInGame.name);
+                Destroy(update.gameObject);
+            }
+            else
+            {
+                Debug.Log("DONT FOULD DRAWED");
+            }
+
+
+        }
+
+
+
     }
     //=======================UI==============================================================================================================
     public void SetActiveMain(bool active)

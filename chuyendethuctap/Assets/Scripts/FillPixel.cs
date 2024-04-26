@@ -11,6 +11,7 @@ using UnityEngine.Tilemaps;
 
 public class FillPixel : MonoBehaviour
 {
+    public bool isWorking = false;
     public static FillPixel Instance;
     //-------------------------//
     public Camera cam;
@@ -26,13 +27,20 @@ public class FillPixel : MonoBehaviour
     //-------------------//
     public StatusGame.STATUS status = StatusGame.STATUS.NORMAL;
     private bool firstclicktrue = false;
+    public List<Vector2Int> listTileDrawed;
     void Awake()
     {
 
         Instance = this;
+        isWorking = false;
     }
     private void Update()
     {
+        if (GlobalSetting.Instance.gameStat != GlobalSetting.GameStat.GAMEPLAY)
+        {
+            return;
+        }
+        if (isWorking) return;
         if (Input.GetMouseButtonDown(0))
         {
             InvokeWhenDown();
@@ -56,7 +64,11 @@ public class FillPixel : MonoBehaviour
         Vector2Int coord = new Vector2Int { x = moucell.x, y = moucell.y };
 
         if (!GameManager.Instance.allPixels.ContainsKey(coord)) { return; }
-        onPoiterDown?.Invoke(coord);
+        if (GlobalSetting.Instance.gameStat == GlobalSetting.GameStat.GAMEPLAY)
+        {
+            onPoiterDown?.Invoke(coord);
+        }
+
     }
     void InvokeWhenHorver()
     {
@@ -66,7 +78,11 @@ public class FillPixel : MonoBehaviour
         Vector2Int coord = new Vector2Int { x = moucell.x, y = moucell.y }; //LUU TRI VI TRI CON TRO CHUOT
 
         if (!GameManager.Instance.allPixels.ContainsKey(coord)) { return; }
-        onPoiterHorver?.Invoke(coord);
+        if (GlobalSetting.Instance.gameStat == GlobalSetting.GameStat.GAMEPLAY)
+        {
+            onPoiterHorver?.Invoke(coord);
+        }
+
 
     }
 
@@ -103,6 +119,9 @@ public class FillPixel : MonoBehaviour
     }
     private void GetColorPixel(Vector2Int coord)
     {
+        if (isWorking) return;
+
+        isWorking = true;
         if (status == StatusGame.STATUS.NORMAL)
         {
             if (GameManager.Instance.allPixels.ContainsKey(coord))
@@ -124,24 +143,31 @@ public class FillPixel : MonoBehaviour
                     }
                 }
             }
+            isWorking = false;
         }
         else if (status == StatusGame.STATUS.BOMB)
         {
+
             if (!firstclicktrue) firstclicktrue = true;
             ActionDraw.FillBoomb(coord, tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteColorNumber);
-
+            isWorking = false;
         }
         else if (status == StatusGame.STATUS.STICK)
         {
             if (!firstclicktrue) firstclicktrue = true;
+            //StartCoroutine(IE_DrawAround(coord, tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteColorNumber));
             ActionDraw.DrawAround(coord, tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteColorNumber);
-
+            isWorking = false;
         }
+
     }
+    int start = 0;
+    int end = 0;
     public IEnumerator IE_DrawAround(Vector2Int input, Tilemap tileMapRenColor, Tilemap tileMapLine, Tilemap tilemapNumber, Tilemap tilemapWhiteRenColor)
     {
-
+        start++;
         int id = GameManager.Instance.allPixels[input].id;
+
         for (int m = input.x - 1; m <= input.x + 1; m++)
         {
             for (int n = input.y - 1; n <= input.y + 1; n++)
@@ -158,18 +184,29 @@ public class FillPixel : MonoBehaviour
                     if (!GameManager.Instance.allPixels[new Vector2Int(m, n)].filledTrue)//chua to thi lay lan dc
                     {
                         ActionDraw.FillTrue(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor);
-                        yield return StartCoroutine(IE_DrawAround(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor));
+                        yield return new WaitForEndOfFrame();
+
+                        StartCoroutine(IE_DrawAround(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor));
                     }
                     else if (GameManager.Instance.allPixels[new Vector2Int(m, n)].filledTrue && !GameManager.Instance.allPixels[new Vector2Int(m, n)].isCheckDrawStick)
                     {
                         GameManager.Instance.allPixels[new Vector2Int(m, n)].isCheckDrawStick = true;
-                        yield return StartCoroutine(IE_DrawAround(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor));
+                        yield return new WaitForEndOfFrame();
+
+                        StartCoroutine(IE_DrawAround(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor));
 
                     }
                 }
             }
         }
+
+        end++;
+        if (end == start)
+        {
+            isWorking = false;
+        }
     }
+
     private bool CheckColor(Color input)
     {
         if (input == GameManager.Instance.colorNow) return true;

@@ -5,7 +5,12 @@ using UnityEngine;
 public class GlobalSetting : SingletonMonoBehaviour<GlobalSetting>
 {
     #region INIT, REF===============================
-    public int SizeTextureLevel;
+    public enum GameStat
+    {
+        HOMING,
+        GAMEPLAY
+    }
+    public GameStat gameStat = GameStat.HOMING;
     //public static List<BasePopup> BasePopups = new List<BasePopup>();
     public override void Awake()
     {

@@ -32,6 +32,26 @@ public class LoadingScene : SingletonMonoBehaviour<LoadingScene>
         loadingSceneGameObject.SetActive(false);
 
     }
+    public IEnumerator LoadSceneAsync2()
+    {
+
+        int percent = 0;
+        int ran = UnityEngine.Random.Range(75, 90);
+        while (percent < 150)
+        {
+            percent++;
+            fill.fillAmount = (float)percent / 100;
+
+            if (percent == ran)
+            {
+
+                yield return new WaitForSecondsRealtime(0.5f);
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+        loadingSceneGameObject.SetActive(false);
+
+    }
 
 
 }

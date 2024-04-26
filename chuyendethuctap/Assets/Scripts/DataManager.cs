@@ -13,9 +13,10 @@ public class DataManager : MonoBehaviour
     public Firebase.FirebaseApp app = null;
     FirebaseStorage storage;
     public List<Sprite> allsprites = new List<Sprite>();
-    public DataInProgress dataInProgress = new DataInProgress();
-    public List<Sprite> folderNew = new List<Sprite>();
     public List<Sprite> folderCreate = new List<Sprite>();
+    public DataInProgress dataInProgress = new DataInProgress();
+
+
 
 
     private void Awake()
@@ -50,7 +51,8 @@ public class DataManager : MonoBehaviour
         bool isLoadComplete = false;
         GetSpritesFromResource();
         GetAllSpriteCreated();
-        GetSpriteFromStorage(() => { isLoadComplete = true; Debug.Log("LoadComplete"); });
+        StartCoroutine(GetSpriteFromStorage(() => { isLoadComplete = true; }));
+
         yield return new WaitUntil(() => isLoadComplete);
         completeLoad?.Invoke();
     }
@@ -60,19 +62,38 @@ public class DataManager : MonoBehaviour
 
 
     }
-    public void GetSpriteFromStorage(Action isComplete = null)
+    IEnumerator GetSpriteFromStorage(Action isComplete = null)
     {
-        StorageReference storageReference = storage.GetReferenceFromUrl("gs://test19-1.appspot.com/18-1.png");
-        GetASpriteFromStorage(storageReference, isComplete);
+        bool isFallOrEmptFile = false;
+        int countFuncRun = 0;
+        int countFuncComplete = 0;
+        for (int i = 0; i < 10; i++)
+        {
+
+            string path = $"gs://test19-1.appspot.com/18 ({i}).png";
+            StorageReference storageReference = storage.GetReferenceFromUrl(path);
+            countFuncRun++;
+            GetASpriteFromStorage(storageReference, $"18 ({i})", () => { countFuncComplete++; }, () => { isFallOrEmptFile = true; countFuncComplete++; });
+
+            if (isFallOrEmptFile)
+            {
+                break;
+            }
+        }
+        yield return new WaitUntil(() => isFallOrEmptFile && countFuncComplete == countFuncRun);
+
+        if (isFallOrEmptFile) { Debug.Log($"Da Download {countFuncComplete} anh"); }
+        isComplete?.Invoke();
     }
-    public void GetASpriteFromStorage(StorageReference reference, Action isComplete = null)
+
+    public void GetASpriteFromStorage(StorageReference reference, string name = "18 (0)", Action isComplete = null, Action isFall = null)
     {
         const long maxAllowedSize = 1 * 1024 * 1024;
         reference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted || task.IsCanceled)
             {
-                Debug.LogException(task.Exception);
+                isFall?.Invoke();
             }
             else
             {
@@ -83,7 +104,7 @@ public class DataManager : MonoBehaviour
                 imageTexture.Apply();
                 Color[] test = imageTexture.GetPixels();
                 Sprite sprite = Sprite.Create(imageTexture, new Rect(0, 0, imageTexture.width, imageTexture.height), new Vector2(0.5f, 0.5f));
-                sprite.name = "123";
+                sprite.name = name;
                 allsprites.Add(sprite);
                 Debug.Log("Finished downloading!");
                 isComplete?.Invoke();
