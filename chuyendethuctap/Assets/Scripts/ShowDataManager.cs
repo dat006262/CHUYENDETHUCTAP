@@ -126,6 +126,7 @@ public class ShowDataManager : MonoBehaviour
             OpenGamePlayBtn openGamePlayBtn = Instantiate(OpenGamePlayBtnPrefabs, contentComplete);
             openGamePlayBtn.spriteSource = GameConfig.Instance.spriteInGame;
             openGamePlayBtn.imageStat = DataManager.Instance.dataInProgress.AddImageStat(GameConfig.Instance.spriteInGame.name);
+            openGamePlayBtn.UpdateImageRender();
             if (SpriteName_BtnDrawed.ContainsKey(GameConfig.Instance.spriteInGame.name))//HaveDrawed
             {
                 OpenGamePlayBtn update = SpriteName_BtnDrawed[GameConfig.Instance.spriteInGame.name];
@@ -134,7 +135,7 @@ public class ShowDataManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("DONT FOULD DRAWED");
+
             }
 
 

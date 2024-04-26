@@ -316,6 +316,6 @@ public class GetCameraImage : MonoBehaviour
         ;
 
 
-
+        GameControll.Instance.OpenCreateWindow();
     }
 }

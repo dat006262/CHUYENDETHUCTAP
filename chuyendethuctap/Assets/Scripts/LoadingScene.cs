@@ -10,9 +10,26 @@ public class LoadingScene : SingletonMonoBehaviour<LoadingScene>
     public GameObject loadingSceneGameObject;
     public Image fill;
     public TextMeshProUGUI textLoading;
+    public bool isSoundOn = true;
+    public Button soundBtn;
+    public TextMeshProUGUI soundText;
     public void Start()
     {
-
+        isSoundOn = true;
+        soundBtn.onClick.AddListener(() =>
+        {
+            isSoundOn = !isSoundOn;
+            if (isSoundOn)
+            {
+                SoundManager.Instance.PlayGameMusic();
+                soundText.text = "Music:ON";
+            }
+            else
+            {
+                SoundManager.Instance.StopGameMusic();
+                soundText.text = "Music:OFF";
+            }
+        });
     }
     public void LoadScene(string name)
     {

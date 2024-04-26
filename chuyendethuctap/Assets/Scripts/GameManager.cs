@@ -75,14 +75,6 @@ public class GameManager : MonoBehaviour
         tileMapHighLight.color = new Color(1, 1, 1, Mathf.Clamp((1 - value * 0.5f), 0.8f, 1));
 
     }
-    //private void Start()
-    //{
-    //    NewGame(GameConfig.Instance.spriteInGame);
-
-    //    /*        idNow = allGetColorButton[0].id;
-    //            colorNow = allGetColorButton[0].color;*/
-    //}
-
     public void ClearAllGame()
     {
         tileMapLine.ClearAllTiles();

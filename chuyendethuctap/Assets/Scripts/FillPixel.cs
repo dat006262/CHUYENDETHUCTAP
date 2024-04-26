@@ -155,9 +155,12 @@ public class FillPixel : MonoBehaviour
         else if (status == StatusGame.STATUS.STICK)
         {
             if (!firstclicktrue) firstclicktrue = true;
-            //StartCoroutine(IE_DrawAround(coord, tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteColorNumber));
-            ActionDraw.DrawAround(coord, tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteColorNumber);
-            isWorking = false;
+            StartCoroutine(FindStick(coord, tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteColorNumber));
+
+            //  StartCoroutine(IE_DrawAround(coord, tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteColorNumber));
+
+            //ActionDraw.DrawAround(coord, tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteColorNumber);
+            //isWorking = false;
         }
 
     }
@@ -205,6 +208,61 @@ public class FillPixel : MonoBehaviour
         {
             isWorking = false;
         }
+    }
+    Stack<Vector2Int> ocancheck = new Stack<Vector2Int>();
+    public void FindDrawArounut(Vector2Int input, Tilemap tileMapRenColor, Tilemap tileMapLine, Tilemap tilemapNumber, Tilemap tilemapWhiteRenColor)
+    {
+
+        int id = GameManager.Instance.allPixels[input].id;
+
+        for (int m = input.x - 1; m <= input.x + 1; m++)
+        {
+            for (int n = input.y - 1; n <= input.y + 1; n++)
+            {
+                if (m < 0 || m >= GameManager.Instance.textureTrue.width) continue;
+                if (n < 0 || n >= GameManager.Instance.textureTrue.height) continue;
+                if (!GameManager.Instance.allPixels.ContainsKey(new Vector2Int(m, n)))
+                {
+                    continue;
+                }
+                if (GameManager.Instance.allPixels[new Vector2Int(m, n)].id == id)
+                {
+                    //id giong
+                    if (!GameManager.Instance.allPixels[new Vector2Int(m, n)].filledTrue)//chua to thi lay lan dc
+                    {
+                        ActionDraw.FillTrue(new Vector2Int(m, n), tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor);
+                        ocancheck.Push(new Vector2Int(m, n));
+
+
+                    }
+                    else if (GameManager.Instance.allPixels[new Vector2Int(m, n)].filledTrue && !GameManager.Instance.allPixels[new Vector2Int(m, n)].isCheckDrawStick)
+                    {
+                        GameManager.Instance.allPixels[new Vector2Int(m, n)].isCheckDrawStick = true;
+                        ocancheck.Push(new Vector2Int(m, n));
+                    }
+                }
+            }
+        }
+
+    }
+
+    public IEnumerator FindStick(Vector2Int input, Tilemap tileMapRenColor, Tilemap tileMapLine, Tilemap tilemapNumber, Tilemap tilemapWhiteRenColor)// chayj 1 lan khi nguoi nhan vao 1 o
+    {
+        ocancheck = new Stack<Vector2Int>();
+        Vector2Int check;
+
+        ocancheck.Push(input);
+        int i = 0;
+        while (ocancheck.Count > 0)
+        {
+            i++;
+            check = ocancheck.Peek();
+            ocancheck.Pop();//Loai bo phan tu vua check
+            FindDrawArounut(check, tileMapRenColor, tileMapLine, tilemapNumber, tilemapWhiteRenColor);
+            yield return new WaitForEndOfFrame();
+            if (i > 100) { Debug.Log("DM vong lap vo han"); break; }
+        }
+        isWorking = false;
     }
 
     private bool CheckColor(Color input)

@@ -82,7 +82,7 @@ public class DataManager : MonoBehaviour
         }
         yield return new WaitUntil(() => isFallOrEmptFile && countFuncComplete == countFuncRun);
 
-        if (isFallOrEmptFile) { Debug.Log($"Da Download {countFuncComplete} anh"); }
+
         isComplete?.Invoke();
     }
 
@@ -106,7 +106,7 @@ public class DataManager : MonoBehaviour
                 Sprite sprite = Sprite.Create(imageTexture, new Rect(0, 0, imageTexture.width, imageTexture.height), new Vector2(0.5f, 0.5f));
                 sprite.name = name;
                 allsprites.Add(sprite);
-                Debug.Log("Finished downloading!");
+
                 isComplete?.Invoke();
             }
         });

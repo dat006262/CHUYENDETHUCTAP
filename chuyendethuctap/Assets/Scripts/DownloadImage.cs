@@ -2,7 +2,6 @@ using Firebase.Extensions;
 using Firebase.Storage;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class DownloadImage : MonoBehaviour

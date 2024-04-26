@@ -294,7 +294,13 @@ public class SoundManager : MonoBehaviour
         music.Play();
         music.loop = true;
     }
-
+    public void StopGameMusic()
+    {
+        if (autoTask != null)
+            StopCoroutine(autoTask);
+        if (music.isPlaying)
+            music.Stop();
+    }
     public void PlayHomeMusic()
     {
         if (autoTask != null)
