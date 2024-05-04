@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
     }
     public void ClearAllGame()
     {
+        FillPixel.Instance.isWorking = false;
         tileMapLine.ClearAllTiles();
         tileMapRenColor.ClearAllTiles();
         tileMapHighLight.ClearAllTiles();
@@ -88,13 +89,19 @@ public class GameManager : MonoBehaviour
         allPixels.Clear();
         totalPage = 0;
         allGetColorButton.Clear();
+        for (int i = pageParent.transform.childCount - 1; i > 0; i--)
+        {
+            Destroy(pageParent.transform.GetChild(i).gameObject);
+        }
+        PageColorSwipe.intances.SetUpPage();
     }
     public void NewGame(Sprite input, Action isComplete = null)
     {
         ClearAllGame();
         Debug.Log("NEWGAME WITH" + input.name);
+        textureTrue = input.texture;
 
-        textureTrue = ChangeTexture(input, sizeMap);//tao anh 50*50dung format
+        //textureTrue = ChangeTexture(input, sizeMap);//tao anh 50*50dung format
         if (!DataManager.Instance.dataInProgress.matrix.ContainsKey(input.name))
         {
             DataManager.Instance.dataInProgress.AddMatrix(input.name, new bool[textureTrue.width, textureTrue.height]);
@@ -117,7 +124,8 @@ public class GameManager : MonoBehaviour
     public void BackToMenu()
     {
         GameControll.Instance.OpenHome();
-        GameConfig.Instance.nowGameButton.UpdateImageRender();
+        ShowDataManager.Instance.UpdateLibrary();
+        ShowDataManager.Instance.UpdateCreate();
         ShowDataManager.Instance.UpdateDrawed();
     }
     Texture2D ChangeTexture(Sprite sprite, int size)
@@ -144,8 +152,9 @@ public class GameManager : MonoBehaviour
         {
             if (colors[i].a >= 0.5f)//Chỉ khi màu có độ đục > 50%
             {
+                float jump = GameConfig.Instance.jumpColor;
                 //làm tròn các giá trị r,g,b theo bước nhảy là 0.25
-                colors[i] = new Color(ColorHelp.RoundColor(colors[i].r, 0.25f), ColorHelp.RoundColor(colors[i].g, 0.25f), ColorHelp.RoundColor(colors[i].b, 0.25f));
+                colors[i] = new Color(ColorHelp.RoundColor(colors[i].r, jump), ColorHelp.RoundColor(colors[i].g, jump), ColorHelp.RoundColor(colors[i].b, jump));
             }
         }
         #endregion
@@ -184,6 +193,12 @@ public class GameManager : MonoBehaviour
                         _allPixelGroups.Add(_countColor, new List<Node>());
                         _allPixelGroups[_countColor].Add(pixel);
                         //Đánh số thứ tự cho ô của tileMap hiển thị số thứ tự
+                        if (_countColor - 1 > number.Count - 1)
+                        {
+                            GameConfig.Instance.jumpColor = 0.25f;
+                            CreatePixelMap(texture);
+                            return;
+                        }
                         CreatePixel(tilemapNumber, pixel.position, Color.black, number[_countColor - 1]);
                         _countColor++;//Đếm tăng lên
 

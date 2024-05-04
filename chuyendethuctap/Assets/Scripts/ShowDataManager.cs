@@ -17,6 +17,8 @@ public class ShowDataManager : MonoBehaviour
     public LibraryScroll libraryScrollPrefabs;
 
     Dictionary<string, OpenGamePlayBtn> SpriteName_BtnDrawed = new Dictionary<string, OpenGamePlayBtn>();
+    Dictionary<string, OpenGamePlayBtn> SpriteName_Btnlibrary = new Dictionary<string, OpenGamePlayBtn>();
+    Dictionary<string, OpenGamePlayBtn> SpriteName_BtnCreate = new Dictionary<string, OpenGamePlayBtn>();
     private void Awake()
     {
         Instance = this;
@@ -46,6 +48,7 @@ public class ShowDataManager : MonoBehaviour
             openGamePlayBtn.size = Mathf.Clamp(Mathf.Min(sprite.texture.width, sprite.texture.height), 10, 100);
 
             openGamePlayBtn.LoadImageRenderer();
+            SpriteName_Btnlibrary.Add(sprite.name, openGamePlayBtn);
             i++;
         }
     }
@@ -86,6 +89,7 @@ public class ShowDataManager : MonoBehaviour
             openGamePlayBtn.size = Mathf.Clamp(Mathf.Min(sprite.texture.width, sprite.texture.height), 10, 100);
 
             openGamePlayBtn.LoadImageRenderer();
+            SpriteName_BtnCreate.Add(sprite.name, openGamePlayBtn);
 
         }
     }
@@ -97,8 +101,30 @@ public class ShowDataManager : MonoBehaviour
         openGamePlayBtn.size = Mathf.Clamp(Mathf.Min(sprite.texture.width, sprite.texture.height), 10, 100);
 
         openGamePlayBtn.LoadImageRenderer();
+        SpriteName_BtnCreate.Add(sprite.name, openGamePlayBtn);
     }
+    public void UpdateLibrary()
+    {
 
+        if (SpriteName_Btnlibrary.ContainsKey(GameConfig.Instance.spriteInGame.name))
+        {
+            OpenGamePlayBtn update = SpriteName_Btnlibrary[GameConfig.Instance.spriteInGame.name];
+
+            update.UpdateImageRender();
+        }
+
+    }
+    public void UpdateCreate()
+    {
+
+        if (SpriteName_BtnCreate.ContainsKey(GameConfig.Instance.spriteInGame.name))
+        {
+            OpenGamePlayBtn update = SpriteName_BtnCreate[GameConfig.Instance.spriteInGame.name];
+
+            update.UpdateImageRender();
+        }
+
+    }
     public void UpdateDrawed()
     {
         if (DataManager.Instance.dataInProgress.AddImageStat(GameConfig.Instance.spriteInGame.name) == ImageStat.INPROGRESS)
@@ -137,12 +163,7 @@ public class ShowDataManager : MonoBehaviour
             {
 
             }
-
-
         }
-
-
-
     }
     //=======================UI==============================================================================================================
     public void SetActiveMain(bool active)

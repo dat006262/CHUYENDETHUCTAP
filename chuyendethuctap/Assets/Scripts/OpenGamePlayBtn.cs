@@ -16,6 +16,22 @@ public class OpenGamePlayBtn : BaseButton
     public Image Image;
     public ImageStat imageStat;
     public GameObject ImageComplete;
+    public float jumpColor
+    {
+        get
+        {
+            if (size < 50)
+            {
+                return 0.25f;
+            }
+            else
+            {
+                return 0.1f;
+            }
+
+        }
+        set { }
+    }
 
     public override void Start()
     {
@@ -43,7 +59,7 @@ public class OpenGamePlayBtn : BaseButton
         GameConfig.Instance.spriteInGame = spriteSource;
         GameConfig.Instance.spriteGameSize = size;
         GameConfig.Instance.nowGameButton = this;
-
+        GameConfig.Instance.jumpColor = jumpColor;
         GameControll.Instance.OpenGamePlay();
         GameManager.Instance.NewGame(GameConfig.Instance.spriteInGame);
         GlobalSetting.Instance.gameStat = GlobalSetting.GameStat.GAMEPLAY;
@@ -53,7 +69,8 @@ public class OpenGamePlayBtn : BaseButton
         size = Mathf.Clamp(Mathf.Min(spriteSource.texture.width, spriteSource.texture.height), 10, 50);
         imageStat = DataManager.Instance.dataInProgress.AddImageStat(spriteSource.name);
         Debug.Log("UpdateImageRender;");
-        Texture2D textureTrue = TextureChange.Bilinear(spriteSource.texture, size, size); ;//tao anh 50*50dung format
+        //   Texture2D textureTrue = TextureChange.Bilinear(, size, size); ;//tao anh 50*50dung format
+        Texture2D textureTrue = spriteSource.texture;
         textureTrue.filterMode = FilterMode.Point;
         Sprite create = Sprite.Create(textureTrue, new Rect(0, 0, textureTrue.width, textureTrue.height), Vector2.one * 0.5f);
         create.name = spriteSource.name;
@@ -83,7 +100,8 @@ public class OpenGamePlayBtn : BaseButton
     }
     public void LoadImageRenderer()
     {
-        Texture2D textureTrue = TextureChange.Bilinear(spriteSource.texture, size, size); ;//tao anh 50*50dung format
+        // Texture2D textureTrue = TextureChange.Bilinear(spriteSource.texture, size, size); ;//tao anh 50*50dung format
+        Texture2D textureTrue = spriteSource.texture;
         textureTrue.filterMode = FilterMode.Point;
         Sprite create = Sprite.Create(textureTrue, new Rect(0, 0, textureTrue.width, textureTrue.height), Vector2.one * 0.5f);
         create.name = spriteSource.name;

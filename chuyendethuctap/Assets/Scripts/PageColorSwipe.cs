@@ -6,6 +6,7 @@ using UnityEngine.UIElements.Experimental;
 
 public class PageColorSwipe : MonoBehaviour, IDragHandler, IEndDragHandler
 {
+    public static PageColorSwipe intances;
     private Vector3 panelLocation;
     public float percentThreshold = 1;
     public float speed01 = 0.8f;
@@ -13,10 +14,20 @@ public class PageColorSwipe : MonoBehaviour, IDragHandler, IEndDragHandler
     public int currentPage = 2;
     [SerializeField] private GameObject _boobHighLight;
     [SerializeField] private GameObject _stickHighLight;
+    private void Awake()
+    {
+        intances = this;
+    }
     private void Start()
     {
+        SetUpPage();
+    }
+    public void SetUpPage()
+    {
+        transform.position += new Vector3(Screen.width, 0, 0) * (currentPage - 2);
         panelLocation = transform.position;
         currentPage = 2;
+
     }
     public void OnDrag(PointerEventData data)
     {

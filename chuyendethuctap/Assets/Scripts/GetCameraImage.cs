@@ -51,6 +51,7 @@ public class GetCameraImage : MonoBehaviour
     private void Awake()
     {
         intances = this;
+        size = 50;
     }
     private void Start()
     {
@@ -65,7 +66,7 @@ public class GetCameraImage : MonoBehaviour
 
     private void ChangeWhenSlideChange(float value)
     {
-        size = Mathf.Lerp(40, 100, value);
+        size = Mathf.Lerp(50, 100, value);
         grayScaleMaterial.SetFloat("_GridWidth", (int)size);
         grayScaleMaterial.SetFloat("_GridHeight", (int)size);
     }
@@ -301,7 +302,7 @@ public class GetCameraImage : MonoBehaviour
         texture = TextureChange.FlipY(texture);
 #endif
         Sprite create = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
-
+        create.name = "Create" + $"{DataManager.Instance.dataInProgress.WebCamPictureCount}";
         return create;
     }
     public void CreateAPictureToDraw()
