@@ -4,23 +4,28 @@ using UnityEngine.Advertisements;
 
 public class InterstitialAdExample : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
-    public static InterstitialAdExample intances;
+
     [SerializeField] string _androidAdUnitId = "Interstitial_Android";
     [SerializeField] string _iOsAdUnitId = "Interstitial_iOS";
     string _adUnitId;
 
     void Awake()
     {
-        intances = this;
+        _adUnitId = _androidAdUnitId;
         // Get the Ad Unit ID for the current platform:
-        _adUnitId = (Application.platform == RuntimePlatform.IPhonePlayer)
-            ? _iOsAdUnitId
-            : _androidAdUnitId;
+        //_adUnitId = (Application.platform == RuntimePlatform.IPhonePlayer)
+        //    ? _iOsAdUnitId
+        //    : _androidAdUnitId;
     }
+
     // Load content to the Ad Unit:
     public void LoadAd()
     {
-
+        if (!Advertisement.isInitialized)
+        {
+            Debug.Log("Init Ads lai 1 lan nua");
+            GlobalSetting.Instance.adsManager.InitializeAds();
+        }
         // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
         Debug.Log("Loading Ad: " + _adUnitId);
         Advertisement.Load(_adUnitId, this);
@@ -37,7 +42,9 @@ public class InterstitialAdExample : MonoBehaviour, IUnityAdsLoadListener, IUnit
     // Implement Load Listener and Show Listener interface methods: 
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
-        ShowAd();
+        Debug.Log("LoadComplete");
+        GlobalSetting.Instance.isHaveAds = true;
+        //ShowAd();
     }
 
     public void OnUnityAdsFailedToLoad(string _adUnitId, UnityAdsLoadError error, string message)

@@ -30,9 +30,18 @@ public class ActionDraw
         {
             DataManager.Instance.dataInProgress.SetImageStatComplete(GameConfig.Instance.spriteInGame.name);
             Debug.Log("WIM");
-            InterstitialAdExample.intances.LoadAd();
-            GameManager.Instance.BackToMenu();
+            //  AdsManager.Instance.PlayInterstitial_Android();
 
+            GameManager.Instance.BackToMenu();
+            if (GlobalSetting.Instance.isHaveAds)
+            {
+                GlobalSetting.Instance.interstitialAdExample.ShowAd();
+            }
+            else
+            {
+                Debug.Log("DontHaveAds");
+
+            }
         }
 
         //  Debug.Log("FillTrue");

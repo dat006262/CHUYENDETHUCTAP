@@ -5,6 +5,9 @@ using UnityEngine;
 public class GlobalSetting : SingletonMonoBehaviour<GlobalSetting>
 {
     #region INIT, REF===============================
+    public InterstitialAdExample interstitialAdExample;
+    public AdsManager adsManager;
+    public bool isHaveAds = false;
     public enum GameStat
     {
         HOMING,

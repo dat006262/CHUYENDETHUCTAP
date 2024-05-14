@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,9 +13,11 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
 
     void Awake()
     {
+    }
+    void Start()
+    {
         InitializeAds();
     }
-
     public void InitializeAds()
     {
 #if UNITY_IOS
@@ -26,9 +29,18 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
 #endif
         if (!Advertisement.isInitialized && Advertisement.isSupported)
         {
+            Debug.Log("Interlize");
             Advertisement.Initialize(_gameId, _testMode, this);
+
         }
+        else
+        {
+            Debug.Log("Vi mot ly do nao do ko init");
+        }
+        Debug.Log($"Ads dc cai dat {Advertisement.isInitialized}");
+        Debug.Log($"Ads dc ho tro {Advertisement.isSupported}");
     }
+
     public void OnInitializationComplete()
     {
         Debug.Log("Unity Ads initialization complete.");

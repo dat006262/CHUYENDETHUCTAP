@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
     }
     public void NewGame(Sprite input, Action isComplete = null)
     {
+        GlobalSetting.Instance.interstitialAdExample.LoadAd();
         ClearAllGame();
         Debug.Log("NEWGAME WITH" + input.name);
         textureTrue = input.texture;
